@@ -291,7 +291,7 @@ public class RGPlayer : MonoBehaviour
 		var guards = GameObject.FindSceneObjectsOfType(typeof(RGGuard));
 		var guard = guards[Random.Range(0, guards.Length)] as RGGuard;
 		
-		Vector3 pos = guard.transform.position + Vector3.up * 0.5f;
+		Vector3 pos = guard.transform.position + Vector3.up * Random.Range(0.25f, 2f);
 		float offset = Random.Range(2f, 5f);
 		if (Random.value < 0.5f) {
 			offset *= -1f;
