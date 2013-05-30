@@ -4,14 +4,12 @@ using System.Collections;
 public class RGGuard : MonoBehaviour {
 	
 	[SerializeField] GameObject bulletPrefab;
-	
-	CharacterController controller;
-	
+		
 	Collider platform;
 	
 	const float SHOT_DELAY = 0.2f;
 	
-	const float MOVE_RATE = 1f;
+	const float MOVE_RATE = 0.25f;
 	
 	float timeToNextShot;
 	
@@ -27,9 +25,7 @@ public class RGGuard : MonoBehaviour {
 	bool bMoving;
 	
 	void Start()
-	{
-		controller = GetComponent<CharacterController>();
-		
+	{		
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, Vector3.down, out hit, 100f)) {
 			platform = hit.collider;
@@ -47,7 +43,7 @@ public class RGGuard : MonoBehaviour {
 		minPos = new Vector3(bounds.min.x, bounds.max.y, bounds.center.z);
 		maxPos = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z);
 		
-		StopMoving();
+		StartMoving();
 	}
 	
 	void Update()
@@ -78,7 +74,7 @@ public class RGGuard : MonoBehaviour {
 		startPos.y = maxPos.y;// + renderer.bounds.size.y * 0.5f;
 		endPos = Vector3.Lerp(minPos, maxPos, Random.value);
 		
-		Debug.Log(string.Format("{0}|{1}|{2}", startPos, endPos, Time.time));
+		//Debug.Log(string.Format("{0}|{1}|{2}", startPos, endPos, Time.time));
 		
 		//transform.LookAt(endPos);
 		
