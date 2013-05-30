@@ -300,7 +300,7 @@ public class RGPlayer : MonoBehaviour
 		currentGoldSpawned += 1;
 		
 		var guards = GameObject.FindSceneObjectsOfType(typeof(RGGuard));
-		var guard = guards[Random.Range(0, guards.Length)] as RGGuard;
+		var guard = guards[Random.Range(0, guards.Length-1)] as RGGuard;
 		
 		Vector3 pos = guard.transform.position + Vector3.up * Random.Range(0.25f, 2f);
 		float offset = Random.Range(2f, 5f);
@@ -318,7 +318,7 @@ public class RGPlayer : MonoBehaviour
 		var platforms = new List<Platform>(GameObject.FindSceneObjectsOfType(typeof(Platform)) as Platform[]);
 		
 		for (int i=0; i<GUARD_COUNT; i++) {
-			var index = Random.Range(0, platforms.Count);
+			var index = Random.Range(0, platforms.Count-1);
 			var platform = platforms[index];
 			platforms.RemoveAt(index);
 			
