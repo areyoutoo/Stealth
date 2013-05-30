@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class RGPlayer : MonoBehaviour 
 {
+	
+	[SerializeField] GameObject goldPrefab;
+	
 	public static RGPlayer instance
 	{
 		get;
@@ -54,6 +57,10 @@ public class RGPlayer : MonoBehaviour
 	
 	int jumpThroughCheckMask;
 	
+	int currentGoldSpawned = 0;
+	const int MAX_GOLD_SPAWNED = 5;
+	const float GOLD_SPAWN_DELAY = GOLD_LIFE_BONUS * 0.8f;
+	
 	List<Collider> jumpThroughDisabledColliders;
 	
 	void Awake()
@@ -67,6 +74,11 @@ public class RGPlayer : MonoBehaviour
 		
 		jumpThroughCheckMask |= 1 << LayerMask.NameToLayer("JumpThrough");
 		jumpThroughDisabledColliders = new List<Collider>(20);
+		
+		for (int i=0; i<MAX_GOLD_SPAWNED; i++) {
+			SpawnGold();
+		}
+		InvokeRepeating("SpawnGold", GOLD_SPAWN_DELAY, GOLD_SPAWN_DELAY);
 	}
 	
 	void Update()
@@ -210,7 +222,7 @@ public class RGPlayer : MonoBehaviour
 		GUI.backgroundColor = Color.yellow;
 		
 		GUILayout.BeginHorizontal();
-		GUILayout.Label(string.Format("{0:n2}", lifetime));
+		GUILayout.Label(life);
 		GUILayout.Button("", GUILayout.Width(lifetime * 10f));
 		GUILayout.EndHorizontal();
 	}
@@ -241,7 +253,8 @@ public class RGPlayer : MonoBehaviour
 		switch (hit.gameObject.layer) {
 		case LAYER_GOLD:
 			Destroy(hit.gameObject);
-			lifetime += GOLD_LIFE_BONUS;
+			lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
+			currentGoldSpawned -= 1;
 			break;
 		case LAYER_GUARD:
 			Lose();
@@ -249,5 +262,23 @@ public class RGPlayer : MonoBehaviour
 		default:
 			break;
 		}
+	}
+	
+	void SpawnGold()
+	{
+		currentGoldSpawned += 1;
+		
+		var guards = GameObject.FindSceneObjectsOfType(typeof(RGGuard));
+		var guard = guards[Random.Range(0, guards.Length)] as RGGuard;
+		
+		Vector3 pos = guard.transform.position;
+		float offset = Random.Range(2f, 5f);
+		if (Random.value < 0.5f) {
+			offset *= -1f;
+		}
+		
+		pos.x += offset;
+		
+		GameObject.Instantiate(goldPrefab, pos, Quaternion.identity);
 	}
 }
