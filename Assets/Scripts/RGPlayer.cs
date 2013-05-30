@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 public class RGPlayer : MonoBehaviour 
 {
+	public static RGPlayer instance
+	{
+		get;
+		private set;
+	}
+	
 	CharacterController controller;
 	
 	Vector3 velocity;
@@ -46,6 +52,10 @@ public class RGPlayer : MonoBehaviour
 	
 	List<Collider> jumpThroughDisabledColliders;
 	
+	void Awake()
+	{
+		instance = this;
+	}
 	
 	void Start()
 	{

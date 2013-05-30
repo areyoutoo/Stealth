@@ -11,4 +11,9 @@ public class RGGuard : MonoBehaviour {
 	{
 		controller = GetComponent<CharacterController>();
 	}
+	
+	void Update()
+	{
+		
+	}
 }
