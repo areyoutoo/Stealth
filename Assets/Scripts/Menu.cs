@@ -32,12 +32,14 @@ public class Menu : MonoBehaviour {
 		
 		GUILayout.BeginVertical();
 		
-		GUILayout.Space(100f);
+		GUILayout.Space(90f);
 		GUILayout.Label("Instructions");
 		GUILayout.Label("");
 		GUILayout.Label("WASD moves");
 		GUILayout.Label("SPACE jumps");
 		GUILayout.Label("Dodge guards; collect gold");
+		GUILayout.Label("");
+		GUILayout.Label("Hint: you can jump through platforms");
 
 		GUILayout.EndVertical();
 		
