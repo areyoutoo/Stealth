@@ -322,9 +322,10 @@ public class RGPlayer : MonoBehaviour
 			var platform = platforms[index];
 			platforms.RemoveAt(index);
 			
-			Vector3 pos = platform.collider.bounds.max;
+			Vector3 pos = platform.collider.bounds.max;			
 			float x = Mathf.Lerp(platform.collider.bounds.min.x, platform.collider.bounds.max.x, Random.Range(0.25f, 0.75f));
 			pos.x = x;
+			pos.z = platform.collider.bounds.center.z;
 			GameObject.Instantiate(guardPrefab, pos, Quaternion.identity);
 		}
 	}
