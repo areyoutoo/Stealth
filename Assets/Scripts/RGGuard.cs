@@ -45,6 +45,8 @@ public class RGGuard : MonoBehaviour {
 		Bounds bounds = platform.bounds;
 		minPos = new Vector3(bounds.min.x, bounds.max.y + collider.bounds.size.y * 0.5f, bounds.center.z);
 		maxPos = new Vector3(bounds.max.x, bounds.max.y + collider.bounds.size.y * 0.5f, bounds.center.z);
+		
+		StopMoving();
 	}
 	
 	void Update()
@@ -59,7 +61,7 @@ public class RGGuard : MonoBehaviour {
 			timeToNextShot = 0f;
 			
 			if (bMoving) {
-				//TODO
+				controller.Move(transform.forward * MOVE_RATE);
 			}
 		}
 	}
@@ -70,6 +72,9 @@ public class RGGuard : MonoBehaviour {
 		endPos = Vector3.Lerp(minPos, maxPos, Random.value);
 		
 		transform.LookAt(endPos);
+		
+		float delay = Vector3.Distance(startPos, endPos) / MOVE_RATE;
+		Invoke ("StopMoving", delay);
 		
 		bMoving = true;
 	}
