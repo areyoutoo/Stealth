@@ -1,7 +1,7 @@
 Stealth
 =======
 
-Quick and dirty video game made in three hours for #1G3H
+Quick and dirty Unity3D game made in three hours for #1G3H
 
 
 Instructions
