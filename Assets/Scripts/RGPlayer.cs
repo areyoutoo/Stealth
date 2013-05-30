@@ -222,6 +222,9 @@ public class RGPlayer : MonoBehaviour
 			Lose();
 		}
 		
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.LoadLevel(0);
+		}
 	}
 	
 	void OnGUI(){
