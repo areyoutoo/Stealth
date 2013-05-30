@@ -49,8 +49,8 @@ public class RGPlayer : MonoBehaviour
 	const float MIN_JUMPTHROUGH_CHECK_DISTANCE = 2f;
 	const float MAX_JUMPTHROUGH_VELOCITY = 1.1f;
 	
-	const int LAYER_GOLD = 11;
-	const int LAYER_GUARD = 13;
+	const int LAYER_GOLD = 13;
+	const int LAYER_GUARD = 11;
 	
 	int jumpThroughCheckMask;
 	

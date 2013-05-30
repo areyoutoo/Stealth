@@ -74,12 +74,13 @@ public class RGGuard : MonoBehaviour {
 	
 	void StartMoving()
 	{
-		startPos = transform.position + Vector3.down * collider.bounds.size.y * 0.5f;
+		startPos = transform.position;
+		startPos.y = maxPos.y;// + renderer.bounds.size.y * 0.5f;
 		endPos = Vector3.Lerp(minPos, maxPos, Random.value);
 		
 		Debug.Log(string.Format("{0}|{1}|{2}", startPos, endPos, Time.time));
 		
-		transform.LookAt(endPos);
+		//transform.LookAt(endPos);
 		
 		float delay = Vector3.Distance(startPos, endPos) / MOVE_RATE;
 		
@@ -112,6 +113,6 @@ public class RGGuard : MonoBehaviour {
 	
 	void SetPosition(Vector3 pos)
 	{
-		transform.position = pos + Vector3.up * collider.bounds.size.y * 0.5f;
+		transform.position = pos;// + Vector3.up * 0.5f;
 	}
 }
