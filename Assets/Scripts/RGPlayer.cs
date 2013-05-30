@@ -204,7 +204,15 @@ public class RGPlayer : MonoBehaviour
 	}
 	
 	void OnGUI(){
+		string life = string.Format("{0:n2}", lifetime);
+		
+		GUI.contentColor = Color.yellow;
+		GUI.backgroundColor = Color.yellow;
+		
+		GUILayout.BeginHorizontal();
 		GUILayout.Label(string.Format("{0:n2}", lifetime));
+		GUILayout.Button("", GUILayout.Width(lifetime * 10f));
+		GUILayout.EndHorizontal();
 	}
 	
 	float ApplyDrag(float inVelocity, float inDrag, float minVelocity = 0f)
@@ -225,6 +233,7 @@ public class RGPlayer : MonoBehaviour
 	void Lose()
 	{
 		Debug.Log("You totally lose, bro");
+		Application.LoadLevel(Application.loadedLevel);
 	}
 	
 	void OnControllerColliderHit(ControllerColliderHit hit)
