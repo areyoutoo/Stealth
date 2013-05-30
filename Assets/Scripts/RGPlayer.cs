@@ -15,6 +15,10 @@ public class RGPlayer : MonoBehaviour
 	float currentJumpHoldTime;
 	float currentWallJumpForgivenessTime;
 	
+	const float MAX_LIFETIME = 30f;
+	
+	float lifetime = MAX_LIFETIME;
+	
 	const float WALL_JUMP_FORGIVENESS_TIME = 0.2f;
 	const float WALL_JUMP_SIDE_VELOCITY = 1.25f;
 	
@@ -177,10 +181,16 @@ public class RGPlayer : MonoBehaviour
 			}
 		}
 		
+		//drain lifetime
+		lifetime -= Time.deltaTime;
+		if (lifetime < 0f) {
+			Lose();
+		}
+		
 	}
 	
 	void OnGUI(){
-		GUILayout.Label(""+transform.position.y);
+		GUILayout.Label(string.Format("{0:n2}", lifetime));
 	}
 	
 	float ApplyDrag(float inVelocity, float inDrag, float minVelocity = 0f)
@@ -196,5 +206,10 @@ public class RGPlayer : MonoBehaviour
 		int layer = LayerMask.NameToLayer(bCanJumpThrough ? "JumpThroughDisabled" : "JumpThrough");
 		c.gameObject.layer = layer;
 		Physics.IgnoreCollision(collider, c, bCanJumpThrough);
+	}
+	
+	void Lose()
+	{
+		Debug.Log("You totally lose, bro");
 	}
 }
