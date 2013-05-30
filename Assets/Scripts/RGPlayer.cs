@@ -248,13 +248,21 @@ public class RGPlayer : MonoBehaviour
 		Application.LoadLevel(Application.loadedLevel);
 	}
 	
+	void OnTriggerEnter(Collider other)
+	{
+		switch (other.gameObject.layer)
+		{
+		case LAYER_GOLD:
+			CollectGold(other.gameObject);
+			break;
+		}
+	}
+	
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		switch (hit.gameObject.layer) {
 		case LAYER_GOLD:
-			Destroy(hit.gameObject);
-			lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
-			currentGoldSpawned -= 1;
+			CollectGold(hit.gameObject);
 			break;
 		case LAYER_GUARD:
 			Lose();
@@ -264,6 +272,13 @@ public class RGPlayer : MonoBehaviour
 		}
 	}
 	
+	void CollectGold(GameObject gold)
+	{
+		Destroy(gold);
+		lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
+		currentGoldSpawned -= 1;
+	}
+	
 	void SpawnGold()
 	{
 		currentGoldSpawned += 1;
@@ -271,7 +286,7 @@ public class RGPlayer : MonoBehaviour
 		var guards = GameObject.FindSceneObjectsOfType(typeof(RGGuard));
 		var guard = guards[Random.Range(0, guards.Length)] as RGGuard;
 		
-		Vector3 pos = guard.transform.position;
+		Vector3 pos = guard.transform.position + Vector3.up * 0.5f;
 		float offset = Random.Range(2f, 5f);
 		if (Random.value < 0.5f) {
 			offset *= -1f;
