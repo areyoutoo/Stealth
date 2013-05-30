@@ -225,6 +225,11 @@ public class RGPlayer : MonoBehaviour
 		GUILayout.Label(life);
 		GUILayout.Button("", GUILayout.Width(lifetime * 10f));
 		GUILayout.EndHorizontal();
+		
+		const float MESSAGE_TIME = 5f;
+		if (Time.timeSinceLevelLoad < MESSAGE_TIME) {
+			GUILayout.Label("Collect gold to restore your lifespan!");
+		}
 	}
 	
 	float ApplyDrag(float inVelocity, float inDrag, float minVelocity = 0f)
