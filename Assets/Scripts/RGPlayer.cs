@@ -5,6 +5,10 @@ public class RGPlayer : MonoBehaviour
 {
 	
 	[SerializeField] GameObject goldPrefab;
+	[SerializeField] GameObject guardPrefab;
+	
+	[SerializeField] AudioSource jumpSound;
+	[SerializeField] AudioSource goldSound;
 	
 	public static RGPlayer instance
 	{
@@ -23,6 +27,8 @@ public class RGPlayer : MonoBehaviour
 	
 	float currentJumpHoldTime;
 	float currentWallJumpForgivenessTime;
+	
+	const int GUARD_COUNT = 5;
 	
 	const float MAX_LIFETIME = 30f;
 	const float GOLD_LIFE_BONUS = 5f;
@@ -75,6 +81,8 @@ public class RGPlayer : MonoBehaviour
 		jumpThroughCheckMask |= 1 << LayerMask.NameToLayer("JumpThrough");
 		jumpThroughDisabledColliders = new List<Collider>(20);
 		
+		SpawnGuards();
+		
 		for (int i=0; i<MAX_GOLD_SPAWNED; i++) {
 			SpawnGold();
 		}
@@ -119,6 +127,7 @@ public class RGPlayer : MonoBehaviour
 			currentJumpHoldTime = 0f;
 			
 			velocity.y = JUMP_VELOCITY;
+			jumpSound.Play();
 			
 			//if wall cling, "launch" away from the wall
 			if (bWallCling) {
@@ -282,6 +291,8 @@ public class RGPlayer : MonoBehaviour
 		Destroy(gold);
 		lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
 		currentGoldSpawned -= 1;
+		
+		goldSound.Play();
 	}
 	
 	void SpawnGold()
@@ -291,7 +302,7 @@ public class RGPlayer : MonoBehaviour
 		var guards = GameObject.FindSceneObjectsOfType(typeof(RGGuard));
 		var guard = guards[Random.Range(0, guards.Length)] as RGGuard;
 		
-		Vector3 pos = guard.transform.position + Vector3.up * 0.5f;
+		Vector3 pos = guard.transform.position + Vector3.up * Random.Range(0.25f, 2f);
 		float offset = Random.Range(2f, 5f);
 		if (Random.value < 0.5f) {
 			offset *= -1f;
@@ -300,5 +311,22 @@ public class RGPlayer : MonoBehaviour
 		pos.x += offset;
 		
 		GameObject.Instantiate(goldPrefab, pos, Quaternion.identity);
+	}
+	
+	void SpawnGuards()
+	{
+		var platforms = new List<Platform>(GameObject.FindSceneObjectsOfType(typeof(Platform)) as Platform[]);
+		
+		for (int i=0; i<GUARD_COUNT; i++) {
+			var index = Random.Range(0, platforms.Count);
+			var platform = platforms[index];
+			platforms.RemoveAt(index);
+			
+			Vector3 pos = platform.collider.bounds.max;			
+			float x = Mathf.Lerp(platform.collider.bounds.min.x, platform.collider.bounds.max.x, Random.Range(0.25f, 0.75f));
+			pos.x = x;
+			pos.z = platform.collider.bounds.center.z;
+			GameObject.Instantiate(guardPrefab, pos, Quaternion.identity);
+		}
 	}
 }
