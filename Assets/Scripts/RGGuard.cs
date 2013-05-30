@@ -15,6 +15,9 @@ public class RGGuard : MonoBehaviour {
 	
 	float timeToNextShot;
 	
+	float currentMoveTime;
+	float moveTime;
+	
 	Vector3 startPos;
 	Vector3 endPos;
 	
@@ -31,9 +34,7 @@ public class RGGuard : MonoBehaviour {
 		if (Physics.Raycast(transform.position, Vector3.down, out hit, 100f)) {
 			platform = hit.collider;
 			
-			Vector3 newPos = hit.point;
-			newPos.y = hit.collider.bounds.max.y + collider.bounds.size.y * 0.5f;
-			transform.position = newPos;
+			SetPosition(hit.point);
 		} else {
 			Debug.Log("couldn't find floor: suiciding");
 			Destroy(gameObject);
@@ -43,8 +44,8 @@ public class RGGuard : MonoBehaviour {
 		platform = collider;
 		
 		Bounds bounds = platform.bounds;
-		minPos = new Vector3(bounds.min.x, bounds.max.y + collider.bounds.size.y * 0.5f, bounds.center.z);
-		maxPos = new Vector3(bounds.max.x, bounds.max.y + collider.bounds.size.y * 0.5f, bounds.center.z);
+		minPos = new Vector3(bounds.min.x, bounds.max.y, bounds.center.z);
+		maxPos = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z);
 		
 		StopMoving();
 	}
@@ -61,20 +62,29 @@ public class RGGuard : MonoBehaviour {
 			timeToNextShot = 0f;
 			
 			if (bMoving) {
-				controller.Move(transform.forward * MOVE_RATE);
+				currentMoveTime += Time.deltaTime;
+				Vector3 pos = Vector3.Lerp(startPos, endPos, Mathf.Clamp01(currentMoveTime / moveTime));
+				SetPosition(pos);
+				if (currentMoveTime > moveTime) {
+					StopMoving();
+				}
 			}
 		}
 	}
 	
 	void StartMoving()
 	{
-		startPos = transform.position;
+		startPos = transform.position + Vector3.down * collider.bounds.size.y * 0.5f;
 		endPos = Vector3.Lerp(minPos, maxPos, Random.value);
+		
+		Debug.Log(string.Format("{0}|{1}|{2}", startPos, endPos, Time.time));
 		
 		transform.LookAt(endPos);
 		
 		float delay = Vector3.Distance(startPos, endPos) / MOVE_RATE;
-		Invoke ("StopMoving", delay);
+		
+		moveTime = delay;
+		currentMoveTime = 0f;
 		
 		bMoving = true;
 	}
@@ -98,5 +108,10 @@ public class RGGuard : MonoBehaviour {
 	{
 		return Vector3.Angle(transform.forward, RGPlayer.instance.transform.position - transform.position) < 30f;
 		//TODO
+	}
+	
+	void SetPosition(Vector3 pos)
+	{
+		transform.position = pos + Vector3.up * collider.bounds.size.y * 0.5f;
 	}
 }

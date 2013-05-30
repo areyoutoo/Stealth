@@ -22,6 +22,7 @@ public class RGPlayer : MonoBehaviour
 	float currentWallJumpForgivenessTime;
 	
 	const float MAX_LIFETIME = 30f;
+	const float GOLD_LIFE_BONUS = 5f;
 	
 	float lifetime = MAX_LIFETIME;
 	
@@ -47,6 +48,9 @@ public class RGPlayer : MonoBehaviour
 	
 	const float MIN_JUMPTHROUGH_CHECK_DISTANCE = 2f;
 	const float MAX_JUMPTHROUGH_VELOCITY = 1.1f;
+	
+	const int LAYER_GOLD = 11;
+	const int LAYER_GUARD = 13;
 	
 	int jumpThroughCheckMask;
 	
@@ -221,5 +225,20 @@ public class RGPlayer : MonoBehaviour
 	void Lose()
 	{
 		Debug.Log("You totally lose, bro");
+	}
+	
+	void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		switch (hit.gameObject.layer) {
+		case LAYER_GOLD:
+			Destroy(hit.gameObject);
+			lifetime += GOLD_LIFE_BONUS;
+			break;
+		case LAYER_GUARD:
+			Lose();
+			break;
+		default:
+			break;
+		}
 	}
 }
