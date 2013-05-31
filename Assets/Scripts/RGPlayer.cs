@@ -125,6 +125,7 @@ public class RGPlayer : MonoBehaviour
 			bHoldingJump = true;
 			bReleasedJump = false;
 			currentJumpHoldTime = 0f;
+			currentWallJumpForgivenessTime = 1000f;
 			
 			velocity.y = JUMP_VELOCITY;
 			jumpSound.Play();
