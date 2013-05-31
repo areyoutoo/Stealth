@@ -39,7 +39,7 @@ public class RGPlayer : MonoBehaviour
 	const float WALL_JUMP_SIDE_VELOCITY = 1.25f;
 	
 	const float JUMP_VELOCITY = 10f;
-	const float JUMP_HOLD_TIME = 0.25f;
+	const float JUMP_HOLD_TIME = 0.3f;
 	
 	const float RUN_ACCEL = 20f;
 	const float FALL_ACCEL = -45f;
