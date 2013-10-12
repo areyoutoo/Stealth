@@ -85,7 +85,7 @@ GameObject:
   - 33: {fileID: 195549470}
   - 65: {fileID: 195549469}
   - 23: {fileID: 195549468}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - 33: {fileID: 563805603}
   - 65: {fileID: 563805602}
   - 23: {fileID: 563805601}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 657960853}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 991669919}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - 33: {fileID: 1003208321}
   - 65: {fileID: 1003208320}
   - 23: {fileID: 1003208319}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,8 +340,8 @@ GameObject:
   - 92: {fileID: 1342400796}
   - 124: {fileID: 1342400795}
   - 81: {fileID: 1342400794}
-  m_Layer: 14
-  m_Name: UI
+  m_Layer: 0
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,8 +405,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1498379262}
+  m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1462435655
 GameObject:
@@ -419,7 +418,7 @@ GameObject:
   - 33: {fileID: 1462435659}
   - 65: {fileID: 1462435658}
   - 23: {fileID: 1462435657}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +481,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1498379262}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,13 +495,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1498379261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 991669919}
   - {fileID: 657960853}
   - {fileID: 1977137819}
-  m_Father: {fileID: 1342400798}
+  m_Father: {fileID: 0}
 --- !u!1 &1741254326
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +513,7 @@ GameObject:
   - 33: {fileID: 1741254330}
   - 65: {fileID: 1741254329}
   - 23: {fileID: 1741254328}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +576,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1977137819}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +607,7 @@ GameObject:
   - 33: {fileID: 2098315141}
   - 65: {fileID: 2098315140}
   - 23: {fileID: 2098315139}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
