@@ -22,7 +22,7 @@ public abstract class UIClickable : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Called once when the mouse is released over this object.
+	/// Called once when the mouse is released over this object, or exits this object while pressed.
 	/// </summary>
 	public virtual void MouseUp() {
 	}

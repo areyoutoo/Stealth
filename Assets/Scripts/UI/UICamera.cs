@@ -40,8 +40,14 @@ public class UICamera : MonoBehaviour {
 				if (lastTarget != null) {
 					if (lastClickTarget != null) {
 						lastClickTarget.MouseOut();
+						if (lastClickTarget == mouseDownTarget) {
+							lastClickTarget.MouseUp();
+						}
 					} else {
 						lastTarget.SendMessage("MouseOut", SendMessageOptions.DontRequireReceiver);
+						if (lastClickTarget == mouseDownTarget) {
+							lastTarget.SendMessage("MouseUp", SendMessageOptions.DontRequireReceiver);
+						}
 					}
 				}
 				
@@ -74,6 +80,7 @@ public class UICamera : MonoBehaviour {
 							target.SendMessage("MouseClick", SendMessageOptions.DontRequireReceiver);
 						}
 					}
+					mouseDownTarget = null;
 				}
 			}
 			
