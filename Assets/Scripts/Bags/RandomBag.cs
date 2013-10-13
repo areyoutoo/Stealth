@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 public class RandomBag<T> : AbstractBag<T> {
 	protected List<T> members;
+	
+	public override int count {
+		get {
+			return members.Count;
+		}
+	}
 
 	public override T GetNext() {
 		if (members.Count > 0) {

@@ -7,6 +7,12 @@ public class WeightedBag<T> : AbstractBag<T> {
 	float totalWeight;
 	List<WeightedBagLink<T>> links;
 	
+	public override int count {
+		get {
+			return links.Count;
+		}
+	}
+	
 	public override T GetNext() {
 		if (links.Count > 0) {
 			float goal = Random.Range(0f, totalWeight);

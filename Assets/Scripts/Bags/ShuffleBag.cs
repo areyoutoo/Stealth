@@ -4,7 +4,13 @@ using System.Collections.Generic;
 public class ShuffleBag<T> : RandomBag<T> {
 	protected List<T> backups;
 	
-	public override T GetNext ()
+//	public override int count {
+//		get {
+//			return backups.Count;
+//		}
+//	}
+	
+	public override T GetNext()
 	{
 		if (members.Count < 1) {
 			members.AddRange(backups);
