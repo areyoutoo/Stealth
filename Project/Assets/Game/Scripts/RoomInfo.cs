@@ -10,6 +10,7 @@ public enum RoomType {
 public class RoomInfo : MonoBehaviour {
 	public Bounds bounds { get; protected set; }
 	public Bounds innerBounds { get; protected set; }
+	public RoomType roomType { get; protected set; }
 	
 	List<RoomInfo> siblings;
 	
