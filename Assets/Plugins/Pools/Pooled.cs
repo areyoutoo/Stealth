@@ -9,6 +9,13 @@ public class Pooled : MonoBehaviour {
 		}
 	}
 	
+	[SerializeField] int family;
+	public int familyID {
+		get {
+			return family;
+		}
+	}
+	
 	Pool lastPool;
 	public bool inPool { 
 		get { 
@@ -20,10 +27,19 @@ public class Pooled : MonoBehaviour {
 		lastPool = pool;
 	}
 	
+	public void ClearPool() {
+		lastPool = null;
+		gameObject.SetActive(true);
+	}
+	
 	public void ReturnToPool() {
-		OnReturnToPool();
+		if (lastPool != null) {
+			OnReturnToPool();
+			lastPool.Add(this);
+		} else {
+			Debug.LogWarning("No pool to return to!", this);
+		}
 		gameObject.SetActive(false);
-		lastPool.Add(this);
 	}
 	
 	protected virtual void OnReturnToPool() {
