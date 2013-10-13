@@ -5,7 +5,18 @@ using System.Collections;
 public class MusicLooper : MonoBehaviour {
 	[SerializeField] bool persistBetweenLevels;
 	
+	static MusicLooper instance;
+	
 	protected void Awake() {
+		if (persistBetweenLevels) {
+			if (instance == null) {
+				instance = this;
+				Object.DontDestroyOnLoad(gameObject);
+			} else {
+				Destroy(gameObject);
+			}
+		}
+		
 		audio.ignoreListenerPause = true;
 		audio.ignoreListenerVolume = true;
 		audio.loop = true;
@@ -18,17 +29,17 @@ public class MusicLooper : MonoBehaviour {
 		
 		audio.dopplerLevel = 0f;		
 		audio.panLevel = 0f;		
-		
-		if (persistBetweenLevels) {
-			Object.DontDestroyOnLoad(gameObject);
+	}
+	
+	protected void OnDestroy() {
+		if (instance == this) {
+			instance = null;
 		}
 	}
 	
-	public void SwitchTracks(AudioClip clip, float fadeTime) {
-		if (fadeTime == 0f) {
-			audio.Stop();
-			audio.clip = clip;
-			audio.Play();
-		}
+	public void SwitchTracks(AudioClip clip) {
+		audio.Stop();
+		audio.clip = clip;
+		audio.Play();
 	}
 }
