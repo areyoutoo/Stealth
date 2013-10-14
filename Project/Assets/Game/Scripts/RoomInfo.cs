@@ -12,11 +12,6 @@ public class RoomInfo : MonoBehaviour {
 	public Bounds innerBounds { get; protected set; }
 	public RoomType roomType { get; protected set; }
 	
-	List<RoomInfo> siblings;
-	
-	public void AttachRoom(RoomInfo room) {
-	}
-	
 	void SpawnGold() {
 	}
 	
