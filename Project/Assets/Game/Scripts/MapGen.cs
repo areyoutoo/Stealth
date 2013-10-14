@@ -44,7 +44,8 @@ public class MapGen : MonoBehaviour {
 		westWall.transform.localScale = new Vector3(1f, 10f, 1f);
 		eastWall.transform.localScale = new Vector3(1f, 10f, 1f);
 		
-		Vector3 center = coord.ToVector3(0f);
+		Vector3 center = (coord * 10).ToVector3(0f);
+		
 		floor.transform.position   = center + Vector3.up * 5f;
 		ceiling.transform.position = center - Vector3.up * 5f;
 		eastWall.transform.position = center + Vector3.right * 5f;
