@@ -10,6 +10,9 @@ public abstract class Effect : MonoBehaviour {
 	
 	protected virtual void Awake() {
 		enabled = playOnAwake;
+		if (playOnAwake) {
+			StartEffect();
+		}
 	}
 	
 	public void Update() {

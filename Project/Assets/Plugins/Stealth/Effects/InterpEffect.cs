@@ -33,7 +33,7 @@ public abstract class InterpEffect : Effect {
 			return Mathf.Sin(a);
 			
 		case InterpEffectMode.SineThrob:
-			float t = Mathf.Repeat(param / period, Mathf.PI);
+			float t = Mathf.Repeat(param / period, Mathf.PI * 2f);
 			float s = Mathf.Sin(t);
 			return Mathf.InverseLerp(-1f, 1f, s);
 			

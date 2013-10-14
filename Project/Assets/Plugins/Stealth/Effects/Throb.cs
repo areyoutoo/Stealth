@@ -6,11 +6,16 @@ public class Throb : InterpEffect {
 	[SerializeField] Vector3 valleySize = Vector3.one * 0.5f;
 	[SerializeField] bool restoreSize;
 	
+	protected Vector3 maxSize = Vector3.one;
+	protected Vector3 minSize = Vector3.one;
+	
 	protected Vector3 originalSize;
 	
 	public override void StartEffect() {
-		originalSize = transform.localScale;
 		base.StartEffect();
+		originalSize = transform.localScale;
+		minSize = Vector3.Scale(originalSize, valleySize);
+		maxSize = Vector3.Scale(originalSize, peakSize);
 	}
 	
 	public override void StopEffect() {
@@ -21,7 +26,7 @@ public class Throb : InterpEffect {
 	}
 	
 	protected override void Interpolate (float param) {
-		transform.localScale = Vector3.Lerp(valleySize, peakSize, param);
-//		Debug.Log(param);
+		Vector3 v = Vector3.Lerp(minSize, maxSize, param);
+		transform.localScale = v;
 	}
 }
