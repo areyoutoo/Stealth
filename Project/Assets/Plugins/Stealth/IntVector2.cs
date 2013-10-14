@@ -17,6 +17,14 @@ public struct IntVector2 {
 		}
 	}
 	
+	public Vector2 ToVector2() {
+		return new UnityEngine.Vector2(x * 1f, y * 1f);
+	}
+	
+	public Vector3 ToVector3(float z) {
+		return new UnityEngine.Vector3(x * 1f, y * 1f, z);
+	}
+	
 	public IntVector2(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -43,6 +51,18 @@ public struct IntVector2 {
 	public static IntVector2 west {
 		get {
 			return new IntVector2(-1,0);
+		}
+	}
+	
+	public static IntVector2 zero {
+		get {
+			return new IntVector2(0,0);
+		}
+	}
+	
+	public static IntVector2 one {
+		get {
+			return new IntVector2(1,1);
 		}
 	}
 	
