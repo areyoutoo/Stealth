@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Flicker : RendererEffect {
-	[SerializeField] float blinkTime;
+	[SerializeField] float blinkTime = 0.3f;
+	[SerializeField] bool invert;
 	
 	protected float currentBlinkTime;
 	protected bool currentBlink = true;
@@ -29,7 +30,7 @@ public class Flicker : RendererEffect {
 		currentBlinkTime = 0f;
 		currentBlink = on;
 		for (int i=0; i<children.Count; i++) {
-			children[i].enabled = on;
+			children[i].enabled = invert ? !on : on;
 		}
 	}
 }
