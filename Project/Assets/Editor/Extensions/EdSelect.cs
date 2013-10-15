@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class EdSelect {
 	
@@ -33,17 +34,16 @@ public static class EdSelect {
 	}
 	
 	public static T[] GetFiltered<T>(SelectionMode selectionMode) where T : UnityEngine.Object {
-//		return (T[])(Selection.GetFiltered(typeof(T), selectionMode));
-		
-		UnityEngine.Object[] objects = Selection.GetFiltered(typeof(T), selectionMode);
-		T[] casts = new T[objects.Length];
-		for (int i=0; i<objects.Length; i++) {
-			casts[i] = (T)objects[i];
-		}
-		return casts;
-		
-//		var objects = Selection.GetFiltered(typeof(T), selectionMode);
-//		return (T[])objects;
+		return Selection.GetFiltered(typeof(T), selectionMode).OfType<T>().ToArray();
+	}
+	
+	public static void SelectByComponent<T>() where T : Component {
+		var objects = Object.FindObjectsOfType(typeof(T));
+		SetSelection(objects);
+	}
+	
+	public static void SetSelection(IEnumerable<Object> objects) {		
+		Selection.objects = objects.ToArray();
 	}
 }
 
