@@ -5,11 +5,11 @@ public class MapGen : MonoBehaviour {
 	RoomInfo currentRoom;
 	List<RoomInfo> rooms;
 	
-	const float ROOM_SIZE = 20f;
-	const float HALF_ROOM_SIZE = ROOM_SIZE / 2f;
-	const float BARRIER_WIDTH = 1f;
-	const float BARRIER_LENGTH = ROOM_SIZE + BARRIER_WIDTH;
-	const float GAP_LENGTH = 6f;
+	public const float ROOM_SIZE = 20f;
+	public const float HALF_ROOM_SIZE = ROOM_SIZE / 2f;
+	public const float BARRIER_WIDTH = 1f;
+	public const float BARRIER_LENGTH = ROOM_SIZE + BARRIER_WIDTH;
+	public const float GAP_LENGTH = 6f;
 	
 	Dictionary<IntVector2, RoomInfo> roomMap;
 	
@@ -98,7 +98,9 @@ public class MapGen : MonoBehaviour {
 		RoomInfo room = parent.AddComponent<RoomInfo>();
 		rooms.Add(room);
 		roomMap.Add(coord, room);
-		room.Init(coord);
+		room.Init(this, coord);
+		
+//		SpawnPlatforms(room);
 	}
 	
 	void SpawnCeiling(GameObject parent, Vector3 center) {
@@ -140,5 +142,9 @@ public class MapGen : MonoBehaviour {
 		block.transform.localScale = scale;
 		block.transform.position = center;
 		block.transform.parent = parent.transform;
+	}
+	
+	public GameObject GetPlatformPrefab() {
+		return platformPrefab;
 	}
 }

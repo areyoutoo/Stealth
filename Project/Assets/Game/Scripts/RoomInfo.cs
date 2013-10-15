@@ -13,8 +13,11 @@ public class RoomInfo : MonoBehaviour {
 	public RoomType roomType { get; protected set; }
 	public IntVector2 coord { get; protected set; }
 	
-	public void Init(IntVector2 coord) {
+	MapGen mapGen;
+	
+	public void Init(MapGen map, IntVector2 coord) {
 		this.coord = coord;
+		mapGen = map;
 	}
 	
 	protected void Start() {
@@ -24,6 +27,8 @@ public class RoomInfo : MonoBehaviour {
 		}
 		bounds = b;
 		innerBounds = new Bounds(transform.position, b.size - Vector3.one - Vector3.one);
+		
+		SpawnPlatforms();
 	}
 	
 	void SpawnGold() {
@@ -32,6 +37,20 @@ public class RoomInfo : MonoBehaviour {
 	void SpawnGuards() {
 	}
 	
-	void SpawnWalls() {
+	void SpawnPlatforms() {
+		int count = Random.Range(10, 15);
+		for (int i=0; i<count; i++) {
+			GameObject platform = (GameObject)Instantiate(mapGen.GetPlatformPrefab());
+			
+//			platform.transform.position = transform.position + Randomx.InBounds(innerBounds);
+			Vector3 v = Randomx.InBounds(innerBounds);
+			v.z = 0f;
+			platform.transform.position = v;
+			
+			Vector3 scale = new Vector3(Random.Range(0.5f, 2f), 1f, 1f);
+			platform.transform.localScale = Vector3.Scale(platform.transform.localScale, scale);
+			
+			platform.transform.parent = transform;
+		}
 	}
 }
