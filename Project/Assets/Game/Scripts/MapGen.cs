@@ -99,8 +99,6 @@ public class MapGen : MonoBehaviour {
 		rooms.Add(room);
 		roomMap.Add(coord, room);
 		room.Init(this, coord);
-		
-//		SpawnPlatforms(room);
 	}
 	
 	void SpawnCeiling(GameObject parent, Vector3 center) {

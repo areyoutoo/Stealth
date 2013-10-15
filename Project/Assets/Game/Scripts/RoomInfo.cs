@@ -18,17 +18,15 @@ public class RoomInfo : MonoBehaviour {
 	public void Init(MapGen map, IntVector2 coord) {
 		this.coord = coord;
 		mapGen = map;
+		
+		Vector3 center = coord.ToVector3(0f);
+		bounds = new Bounds(center, (Vector3.one * 2f * (MapGen.ROOM_SIZE + MapGen.BARRIER_WIDTH)).WithZ(0.1f));
+		innerBounds = new Bounds(center, (Vector3.one * 2f * MapGen.ROOM_SIZE).WithZ(0.1f));
+		
+		SpawnPlatforms();
 	}
 	
 	protected void Start() {
-		Bounds b = new Bounds(transform.position, Vector3.zero);
-		foreach (Collider c in GetComponentsInChildren<Collider>()) {
-			b.Encapsulate(c.bounds);
-		}
-		bounds = b;
-		innerBounds = new Bounds(transform.position, b.size - Vector3.one - Vector3.one);
-		
-		SpawnPlatforms();
 	}
 	
 	void SpawnGold() {
@@ -43,8 +41,7 @@ public class RoomInfo : MonoBehaviour {
 			GameObject platform = (GameObject)Instantiate(mapGen.GetPlatformPrefab());
 			
 //			platform.transform.position = transform.position + Randomx.InBounds(innerBounds);
-			Vector3 v = Randomx.InBounds(innerBounds);
-			v.z = 0f;
+			Vector3 v = Randomx.InBounds(innerBounds).WithZ(0f);
 			platform.transform.position = v;
 			
 			Vector3 scale = new Vector3(Random.Range(0.5f, 2f), 1f, 1f);
