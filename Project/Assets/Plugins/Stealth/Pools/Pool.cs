@@ -37,6 +37,7 @@ public class Pool : RandomBag<Pooled> {
 		} else {
 			base.Add(item);
 		}
+		item.AddToPool(this);
 		UpdateCounts();	
 	}
 	
