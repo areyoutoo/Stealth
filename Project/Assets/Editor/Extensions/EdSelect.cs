@@ -33,12 +33,17 @@ public static class EdSelect {
 		return GetFiltered<Transform>(SelectionMode.TopLevel);
 	}
 	
-	public static T[] GetFiltered<T>(SelectionMode selectionMode) where T : UnityEngine.Object {
+	public static T[] GetFiltered<T>(SelectionMode selectionMode = SelectionMode.Unfiltered) where T : UnityEngine.Object {
 		return Selection.GetFiltered(typeof(T), selectionMode).OfType<T>().ToArray();
 	}
 	
-	public static void SelectByComponent<T>() where T : Component {
+	public static void SelectComponentsInScene<T>() where T : Component {
 		var objects = Object.FindObjectsOfType(typeof(T));
+		SetSelection(objects);
+	}
+	
+	public static void SelectComponentsInSelection<T>() where T : Component {
+		var objects = GetFiltered<T>();
 		SetSelection(objects);
 	}
 	
