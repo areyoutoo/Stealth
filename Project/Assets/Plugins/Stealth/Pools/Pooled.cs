@@ -52,4 +52,17 @@ public class Pooled : MonoBehaviour {
 	
 	protected virtual void OnRemovedFromPool() {
 	}
+	
+	public static bool ReturnOrDestroy(GameObject target) {
+		Pooled p = target.GetComponent<Pooled>();
+		
+		bool found = p != null;
+		if (found) {
+			p.ReturnToPool();
+		} else {
+			GameObject.Destroy(p);
+		}
+		
+		return found;
+	}
 }

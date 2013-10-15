@@ -292,7 +292,8 @@ public class RGPlayer : MonoBehaviour
 	
 	void CollectGold(GameObject gold)
 	{
-		Destroy(gold);
+		Pooled.ReturnOrDestroy(gold);
+		
 		lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
 		currentGoldSpawned -= 1;
 		
@@ -301,6 +302,7 @@ public class RGPlayer : MonoBehaviour
 	
 	void SpawnGold()
 	{
+		return;
 		currentGoldSpawned += 1;
 		
 		var guards = (RGGuard[])Object.FindObjectsOfType(typeof(RGGuard));
