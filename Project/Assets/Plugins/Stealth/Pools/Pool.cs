@@ -74,7 +74,7 @@ public class Pool : RandomBag<Pooled> {
 			Add(p);
 		}
 		
-		nextSpawnCount *= 2;
+		nextSpawnCount = Mathf.Min(nextSpawnCount * 2, 128);
 	}
 	
 	
