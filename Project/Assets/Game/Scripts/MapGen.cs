@@ -27,10 +27,43 @@ public class MapGen : MonoBehaviour {
 		root = new GameObject("Rooms");
 		
 		ConnectRoom(IntVector2.zero, IntVector2.zero);
-		ConnectRoom(IntVector2.zero, IntVector2.north);
-		ConnectRoom(IntVector2.zero, IntVector2.south);
-		ConnectRoom(IntVector2.zero, IntVector2.east);
-		ConnectRoom(IntVector2.zero, IntVector2.west);
+		ConnectRooms(IntVector2.zero);
+		
+		currentRoom = roomMap[IntVector2.zero];
+	}
+	
+	protected void Update() {
+		if (!currentRoom.bounds.Contains(transform.position)) {
+			
+			IntVector2[] dirs = new IntVector2[]{
+				IntVector2.north,
+				IntVector2.south,
+				IntVector2.east,
+				IntVector2.west,
+			};
+			
+			bool found = false;
+			foreach (IntVector2 dir in dirs) {
+				IntVector2 c = currentRoom.coord + dir;
+				if (roomMap.ContainsKey(c) && roomMap[c].bounds.Contains(transform.position)) {
+					currentRoom = roomMap[c];
+					found = true;
+				}
+			}
+			
+			if (!found) {
+				Debug.LogWarning("Failed to locate room!");
+			} else {
+				ConnectRooms(currentRoom.coord);
+			}
+		}
+	}
+	
+	void ConnectRooms(IntVector2 pos) {
+		ConnectRoom(pos, IntVector2.north);
+		ConnectRoom(pos, IntVector2.south);
+		ConnectRoom(pos, IntVector2.east);
+		ConnectRoom(pos, IntVector2.west);
 	}
 	
 	void ConnectRoom(IntVector2 pos, IntVector2 dir) {
@@ -61,6 +94,11 @@ public class MapGen : MonoBehaviour {
 		if (dir != IntVector2.east) {
 			SpawnWall(parent, center - Vector3.right * HALF_ROOM_SIZE);
 		}
+		
+		RoomInfo room = parent.AddComponent<RoomInfo>();
+		rooms.Add(room);
+		roomMap.Add(coord, room);
+		room.Init(coord);
 	}
 	
 	void SpawnCeiling(GameObject parent, Vector3 center) {		
