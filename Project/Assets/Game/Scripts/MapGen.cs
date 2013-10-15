@@ -58,6 +58,9 @@ public class MapGen : MonoBehaviour {
 				Debug.LogWarning("Failed to locate room!");
 			} else {
 				ConnectRooms(currentRoom.coord);
+				foreach (IntVector2 dir in dirs) {
+					ConnectRooms(currentRoom.coord + dir);
+				}
 			}
 		}
 	}
