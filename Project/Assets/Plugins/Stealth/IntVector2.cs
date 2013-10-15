@@ -85,4 +85,8 @@ public struct IntVector2 {
 	public static IntVector2 operator *(IntVector2 a, int scale) {
 		return new IntVector2(a.x * scale, a.y * scale);
 	}
+	
+	public static IntVector2 operator *(IntVector2 a, float scale) {
+		return a * Mathf.FloorToInt(scale);
+	}
 }

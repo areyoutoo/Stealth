@@ -5,6 +5,11 @@ public class MapGen : MonoBehaviour {
 	RoomInfo currentRoom;
 	List<RoomInfo> rooms;
 	
+	const float ROOM_SIZE = 10f;
+	const float HALF_ROOM_SIZE = ROOM_SIZE / 2f;
+	const float BARRIER_WIDTH = 1f;
+	const float BARRIER_LENGTH = ROOM_SIZE + BARRIER_WIDTH;
+	
 	Dictionary<IntVector2, RoomInfo> roomMap;
 	
 	[SerializeField] GameObject barrierPrefab;
@@ -38,17 +43,17 @@ public class MapGen : MonoBehaviour {
 		GameObject westWall = (GameObject)Instantiate(barrierPrefab);
 		GameObject eastWall = (GameObject)Instantiate(barrierPrefab);
 		
-		floor.transform.localScale   = new Vector3(10f, 1f, 1f);
-		ceiling.transform.localScale = new Vector3(10f, 1f, 1f);
+		floor.transform.localScale   = new Vector3(BARRIER_LENGTH, BARRIER_WIDTH, BARRIER_WIDTH);
+		ceiling.transform.localScale = new Vector3(BARRIER_LENGTH, BARRIER_WIDTH, BARRIER_WIDTH);
 		
-		westWall.transform.localScale = new Vector3(1f, 10f, 1f);
-		eastWall.transform.localScale = new Vector3(1f, 10f, 1f);
+		westWall.transform.localScale = new Vector3(BARRIER_WIDTH, BARRIER_LENGTH, BARRIER_WIDTH);
+		eastWall.transform.localScale = new Vector3(BARRIER_WIDTH, BARRIER_LENGTH, BARRIER_WIDTH);
 		
-		Vector3 center = (coord * 10).ToVector3(0f);
+		Vector3 center = (coord * ROOM_SIZE).ToVector3(0f);
 		
-		floor.transform.position   = center + Vector3.up * 5f;
-		ceiling.transform.position = center - Vector3.up * 5f;
-		eastWall.transform.position = center + Vector3.right * 5f;
-		westWall.transform.position = center - Vector3.right * 5f;
+		floor.transform.position   = center + Vector3.up * HALF_ROOM_SIZE;
+		ceiling.transform.position = center - Vector3.up * HALF_ROOM_SIZE;
+		eastWall.transform.position = center + Vector3.right * HALF_ROOM_SIZE;
+		westWall.transform.position = center - Vector3.right * HALF_ROOM_SIZE;
 	}
 }
