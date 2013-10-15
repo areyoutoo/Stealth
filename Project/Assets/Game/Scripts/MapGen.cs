@@ -101,7 +101,7 @@ public class MapGen : MonoBehaviour {
 		room.Init(coord);
 	}
 	
-	void SpawnCeiling(GameObject parent, Vector3 center) {		
+	void SpawnCeiling(GameObject parent, Vector3 center) {
 		float far_left = center.x - HALF_ROOM_SIZE - BARRIER_WIDTH;
 		float far_right = center.x + HALF_ROOM_SIZE + BARRIER_WIDTH;
 		
@@ -119,7 +119,20 @@ public class MapGen : MonoBehaviour {
 	}
 	
 	void SpawnWall(GameObject parent, Vector3 center) {
-		SpawnBlock(parent, center, new Vector3(BARRIER_WIDTH, BARRIER_LENGTH, BARRIER_WIDTH));
+		float far_left = center.y - HALF_ROOM_SIZE - BARRIER_WIDTH;
+		float far_right = center.y + HALF_ROOM_SIZE + BARRIER_WIDTH;
+		
+		float gap_start = Random.Range(far_left + BARRIER_WIDTH, far_right - GAP_LENGTH - BARRIER_WIDTH);
+		float gap_end = gap_start + GAP_LENGTH;
+		
+		Vector3 left_center = new Vector3(center.x, Mathf.Lerp(far_left, gap_start, 0.5f) + BARRIER_WIDTH*0.5f, center.z);
+		Vector3 right_center = new Vector3(center.x, Mathf.Lerp(gap_end, far_right, 0.5f) - BARRIER_WIDTH*0.5f, center.z);
+		
+		Vector3 left_scale = new Vector3(BARRIER_WIDTH, gap_start - far_left, BARRIER_WIDTH);
+		Vector3 right_scale = new Vector3(BARRIER_WIDTH, far_right - gap_end, BARRIER_WIDTH);
+		
+		SpawnBlock(parent, left_center, left_scale);
+		SpawnBlock(parent, right_center, right_scale);
 	}
 	
 	void SpawnBlock(GameObject parent, Vector3 center, Vector3 scale) {
