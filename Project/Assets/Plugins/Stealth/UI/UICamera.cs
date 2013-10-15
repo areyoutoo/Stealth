@@ -104,4 +104,34 @@ public class UICamera : MonoBehaviour {
 			main = null;
 		}
 	}
+	
+	public Vector3 ScreenToUISpace(Vector3 point) {
+		return camera.ScreenToWorldPoint(point);
+	}
+	
+	public Vector3 ScreenToMain(Vector3 point) {
+		return Camera.main.ScreenToWorldPoint(point);
+	}
+	
+	public Vector3 MainToUISpace(Vector3 point) {
+		return ScreenToUISpace(Camera.main.WorldToScreenPoint(point));
+	}
+	
+	public Vector3 MainToScreen(Vector3 point) {
+		return Camera.main.WorldToScreenPoint(point);
+	}
+	
+	public Vector3 UISpaceToMain(Vector3 point) {
+		return ScreenToMain(camera.WorldToScreenPoint(point));
+	}
+	
+	public Vector3 UISpaceToScreen(Vector3 point) {
+		return camera.WorldToScreenPoint(point);
+	}
+	
+
+	
+//	public Vector3 ProjectUIToWorld(Vector3 uiPoint) {
+//		return Camera.main.ScreenToWorldPoint(uiPoint);
+//	}
 }
