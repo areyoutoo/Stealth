@@ -19,6 +19,7 @@ public class PoolManager : MonoBehaviour {
 	}
 	
 	protected void OnDestroy() {
+		Debug.LogWarning("foo");
 		Unregister(familyID);
 	}
 	
