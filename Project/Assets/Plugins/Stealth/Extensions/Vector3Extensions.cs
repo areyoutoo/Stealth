@@ -14,6 +14,14 @@ public static class Vector3Extensions {
 		return new Vector3(v.x, v.y, z);
 	}
 	
+	public static Vector3 WithScale(this Vector3 v, Vector3 other) {
+		return Vector3.Scale(v, other);
+	}
+	
+	public static Vector3 WithLength(this Vector3 v, float length) {
+		return v.normalized * length;
+	}
+	
 	public static Vector2 ToVector2(this Vector3 v) {
 		return new Vector2(v.x, v.y);
 	}
