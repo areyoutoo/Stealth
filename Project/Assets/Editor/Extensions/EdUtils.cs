@@ -49,4 +49,10 @@ public static class EdUtils {
 			EditorUtility.ClearProgressBar();
 		}
 	}
+	
+	public static GameObject GroupObjects(IEnumerable<GameObject> children) {
+		GameObject parent = new GameObject();
+		SceneAction<GameObject>("Group objects", children, c => c.transform.parent = parent.transform);
+		return parent;
+	}
 }
