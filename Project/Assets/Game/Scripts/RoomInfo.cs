@@ -19,7 +19,7 @@ public class RoomInfo : MonoBehaviour {
 		this.coord = coord;
 		mapGen = map;
 		
-		Vector3 center = coord.ToVector3(0f);
+		Vector3 center = coord.ToVector3(0f) * MapGen.ROOM_SIZE;
 		bounds = new Bounds(center, (Vector3.one * 2f * (MapGen.ROOM_SIZE + MapGen.BARRIER_WIDTH)).WithZ(0.1f));
 		innerBounds = new Bounds(center, (Vector3.one * 2f * MapGen.ROOM_SIZE).WithZ(0.1f));
 		
