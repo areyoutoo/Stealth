@@ -9,6 +9,7 @@ public class RGPlayer : MonoBehaviour
 	
 	[SerializeField] AudioSource jumpSound;
 	[SerializeField] AudioSource goldSound;
+	[SerializeField] AudioSource landSound;
 	
 	public static RGPlayer instance
 	{
@@ -62,6 +63,8 @@ public class RGPlayer : MonoBehaviour
 	const int LAYER_GUARD = 11;
 	
 	int jumpThroughCheckMask;
+	
+	bool wasGrounded;
 	
 	int currentGoldSpawned = 0;
 	const int MAX_GOLD_SPAWNED = 5;
@@ -126,6 +129,9 @@ public class RGPlayer : MonoBehaviour
 			bReleasedJump = false;
 			currentJumpHoldTime = 0f;
 			currentWallJumpForgivenessTime = 1000f;
+			
+			//TODO
+			wasGrounded = false;
 			
 			velocity.y = JUMP_VELOCITY;
 			jumpSound.Play();
@@ -226,6 +232,12 @@ public class RGPlayer : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.LoadLevel(0);
 		}
+		
+		if (controller.isGrounded && !wasGrounded) {
+			landSound.Play();
+			wasGrounded = true;
+		}
+//		wasGrounded = controller.isGrounded;
 	}
 	
 	void OnGUI(){
