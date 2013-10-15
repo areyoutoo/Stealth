@@ -37,23 +37,25 @@ public class MapGen : MonoBehaviour {
 		if (roomMap.ContainsKey(coord)) {
 			return;
 		}
-		
-		GameObject floor = (GameObject)Instantiate(barrierPrefab);
-		GameObject ceiling = (GameObject)Instantiate(barrierPrefab);
-		GameObject westWall = (GameObject)Instantiate(barrierPrefab);
-		GameObject eastWall = (GameObject)Instantiate(barrierPrefab);
-		
-		floor.transform.localScale   = new Vector3(BARRIER_LENGTH, BARRIER_WIDTH, BARRIER_WIDTH);
-		ceiling.transform.localScale = new Vector3(BARRIER_LENGTH, BARRIER_WIDTH, BARRIER_WIDTH);
-		
-		westWall.transform.localScale = new Vector3(BARRIER_WIDTH, BARRIER_LENGTH, BARRIER_WIDTH);
-		eastWall.transform.localScale = new Vector3(BARRIER_WIDTH, BARRIER_LENGTH, BARRIER_WIDTH);
-		
+
 		Vector3 center = (coord * ROOM_SIZE).ToVector3(0f);
 		
-		floor.transform.position   = center + Vector3.up * HALF_ROOM_SIZE;
-		ceiling.transform.position = center - Vector3.up * HALF_ROOM_SIZE;
-		eastWall.transform.position = center + Vector3.right * HALF_ROOM_SIZE;
-		westWall.transform.position = center - Vector3.right * HALF_ROOM_SIZE;
+		SpawnCeiling(center + Vector3.up * HALF_ROOM_SIZE);
+		SpawnCeiling(center - Vector3.up * HALF_ROOM_SIZE);
+		
+		SpawnWall(center + Vector3.right * HALF_ROOM_SIZE);
+		SpawnWall(center - Vector3.right * HALF_ROOM_SIZE);
+	}
+	
+	void SpawnCeiling(Vector3 center) {
+		GameObject ceiling = (GameObject)Instantiate(barrierPrefab);
+		ceiling.transform.localScale = new Vector3(BARRIER_LENGTH, BARRIER_WIDTH, BARRIER_WIDTH);
+		ceiling.transform.position = center;
+	}
+	
+	void SpawnWall(Vector3 center) {
+		GameObject wall = (GameObject)Instantiate(barrierPrefab);
+		wall.transform.localScale = new Vector3(BARRIER_WIDTH, BARRIER_LENGTH, BARRIER_WIDTH);
+		wall.transform.position = center;
 	}
 }
