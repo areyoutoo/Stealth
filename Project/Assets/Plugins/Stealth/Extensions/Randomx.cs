@@ -7,7 +7,6 @@ public static class Randomx {
 		for (int i=0; i<3; i++) {
 			v[i] = Random.Range(b.min[i], b.max[i]);
 		}
-		Debug.Log(v);
 		return v;
 	}
 	
