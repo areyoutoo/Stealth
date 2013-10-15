@@ -16,11 +16,14 @@ public class MapGen : MonoBehaviour {
 	[SerializeField] GameObject barrierPrefab;
 	[SerializeField] GameObject platformPrefab;
 	
+	public PoolManager poolManager { get; protected set; }
+	
 	GameObject root;
 	
 	protected void Awake() {
 		rooms = new List<RoomInfo>();
 		roomMap = new Dictionary<IntVector2, RoomInfo>();
+		poolManager = GetComponent<PoolManager>();
 	}
 	
 	protected void Start() {
@@ -136,7 +139,7 @@ public class MapGen : MonoBehaviour {
 	}
 	
 	void SpawnBlock(GameObject parent, Vector3 center, Vector3 scale) {
-		GameObject block = PoolManager.Get(1, 1);// (GameObject)Instantiate(barrierPrefab);
+		GameObject block = poolManager.Get(1);// (GameObject)Instantiate(barrierPrefab);
 		block.transform.localScale = scale;
 		block.transform.position = center;
 		block.transform.parent = parent.transform;

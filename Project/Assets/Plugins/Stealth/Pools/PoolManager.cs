@@ -19,12 +19,13 @@ public class PoolManager : MonoBehaviour {
 	}
 	
 	protected void OnDestroy() {
-		Debug.LogWarning("foo");
 		Unregister(familyID);
 	}
 	
 	protected void Start() {
-		RebuildPools();
+		if (poolMap == null) {
+			RebuildPools();
+		}
 	} 
 
 	
@@ -52,6 +53,9 @@ public class PoolManager : MonoBehaviour {
 	
 	
 	public GameObject Get(int poolID) {
+		if (poolMap == null) {
+			RebuildPools();
+		}
 		if (poolMap.ContainsKey(poolID)) {
 			Pooled p = poolMap[poolID].GetNext();
 			if (p != null) {

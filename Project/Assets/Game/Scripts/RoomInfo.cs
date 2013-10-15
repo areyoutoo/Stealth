@@ -38,7 +38,7 @@ public class RoomInfo : MonoBehaviour {
 	void SpawnPlatforms() {
 		int count = Random.Range(10, 15);
 		for (int i=0; i<count; i++) {
-			GameObject platform = PoolManager.Get(1, 2);// (GameObject)Instantiate(mapGen.GetPlatformPrefab());
+			GameObject platform = mapGen.poolManager.Get(2);// (GameObject)Instantiate(mapGen.GetPlatformPrefab());
 			
 //			platform.transform.position = transform.position + Randomx.InBounds(innerBounds);
 			Vector3 v = Randomx.InBounds(innerBounds).WithZ(0f);
