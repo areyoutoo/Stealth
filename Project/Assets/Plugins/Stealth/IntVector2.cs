@@ -25,6 +25,26 @@ public struct IntVector2 {
 		return new UnityEngine.Vector3(x * 1f, y * 1f, z);
 	}
 	
+	public override string ToString() {
+		return string.Format("({0},{1})", x, y);
+	}
+	
+	public override bool Equals(object other) {
+		if (other is IntVector2) {
+			return this == (IntVector2)other;
+		} else {
+			return base.Equals(other);
+		}
+	}
+	
+	public override int GetHashCode() {
+		return base.GetHashCode();
+	}
+	
+	public bool Equals(IntVector2 other) {
+		return this == other;
+	}
+	
 	public IntVector2(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -88,5 +108,19 @@ public struct IntVector2 {
 	
 	public static IntVector2 operator *(IntVector2 a, float scale) {
 		return a * Mathf.FloorToInt(scale);
+	}
+	
+	public static bool operator ==(IntVector2 a, IntVector2 b) {
+		if ((object)a == null) {
+			return (object)b == null;
+		} else if ((object)b == null) {
+			return false;
+		} else {
+			return a.x == b.x && a.y == b.y;
+		}
+	}
+	
+	public static bool operator !=(IntVector2 a, IntVector2 b) {
+		return !(a==b);
 	}
 }
