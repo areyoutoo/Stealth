@@ -62,4 +62,23 @@ public static class GameObjectExtensions {
 		
 		return found;
 	}
+	
+	public static GameObject InstantiateChild(this GameObject root, GameObject prefab) {
+		return root.InstantiateChild(prefab, Vector3.zero, Quaternion.identity);
+	}
+	
+	public static GameObject InstantiateChild(this GameObject root, GameObject prefab, Vector3 position, Quaternion rotation, Space space=Space.Self) {
+		GameObject child;
+		if (space == Space.World) {
+			child = (GameObject)GameObject.Instantiate(prefab, position, rotation);
+			child.transform.parent = root.transform;
+		} else {
+			child = (GameObject)GameObject.Instantiate(prefab, root.transform.position, root.transform.rotation);
+			child.transform.parent = root.transform;
+			child.transform.localPosition = position;
+			child.transform.localRotation = rotation;
+		}
+		
+		return child;
+	}
 }
