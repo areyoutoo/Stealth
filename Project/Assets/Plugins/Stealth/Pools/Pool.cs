@@ -72,6 +72,7 @@ public class Pool : RandomBag<Pooled> {
 		for (int i=0; i<nextSpawnCount; i++) {
 			GameObject clone = (GameObject)GameObject.Instantiate(original, original.transform.position, original.transform.rotation);
 			Pooled p = clone.GetComponent<Pooled>();
+			clone.transform.parent = backupMember.transform.parent;
 			Add(p);
 		}
 		

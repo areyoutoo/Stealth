@@ -134,15 +134,18 @@ public class RGPlayer : MonoBehaviour
 			wasGrounded = false;
 			
 			velocity.y = JUMP_VELOCITY;
-			jumpSound.Play();
 			
 			//if wall cling, "launch" away from the wall
 			if (bWallCling) {
 				if (bKeyLeft) {
 					velocity.x = WALL_JUMP_SIDE_VELOCITY;
+					PlayJumpEffect(transform.position, Vector3.right);
 				} else if (bKeyRight) {
 					velocity.x = -WALL_JUMP_SIDE_VELOCITY;
+					PlayJumpEffect(transform.position, Vector3.left);
 				}
+			} else {
+				PlayJumpEffect(transform.position, Vector3.up);
 			}
 		}
 		
@@ -349,6 +352,23 @@ public class RGPlayer : MonoBehaviour
 			pos.x = x;
 			pos.z = platform.collider.bounds.center.z;
 			GameObject.Instantiate(guardPrefab, pos, Quaternion.identity);
+		}
+	}
+	
+	
+	
+	void PlayLandEffect(Vector3 pos) {
+	}
+	
+	void PlayJumpEffect(Vector3 pos, Vector3 dir) {
+		jumpSound.Play();
+		
+		GameObject p = PoolManager.Get(300, 1);
+		if (p != null) {
+			p.transform.position = pos;
+//			p.transform.LookAt(pos + dir);
+			p.particleSystem.Play();
+			p.particleSystem.Emit(10);
 		}
 	}
 }
