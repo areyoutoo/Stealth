@@ -11,6 +11,11 @@ public class RGPlayer : MonoBehaviour
 	[SerializeField] AudioSource goldSound;
 	[SerializeField] AudioSource landSound;
 	
+	[SerializeField] ParticleSystem slideLeft;
+	[SerializeField] ParticleSystem slideRight;
+	[SerializeField] ParticleSystem dragLeft;
+	[SerializeField] ParticleSystem dragRight;
+	
 	public static RGPlayer instance
 	{
 		get;
@@ -177,9 +182,47 @@ public class RGPlayer : MonoBehaviour
 		if (!bKeyLeft && !bKeyRight) {
 			float dragRate = controller.isGrounded ? FLOOR_DRAG : AIR_DRAG;
 			velocity.x = ApplyDrag(velocity.x, dragRate * Time.deltaTime);
+			if (controller.isGrounded) {
+				if (velocity.x < -0.05f) {
+					if (!dragLeft.isPlaying) {
+						dragLeft.Emit(1);
+						dragLeft.Play();
+					}
+				} else if (velocity.x > 0.05f) {
+					if (!dragRight.isPlaying) {
+						dragRight.Emit(1);
+						dragRight.Play();
+					}
+				} else {
+					dragLeft.Stop();
+					dragRight.Stop();
+				}
+			} else {
+				dragLeft.Stop();
+				dragRight.Stop();
+			}
+		} else {
+			dragLeft.Stop();
+			dragRight.Stop();
 		}
+		
+		
 		if (bWallCling) {
 			velocity.y = ApplyDrag(velocity.y, CLING_DRAG * Time.deltaTime, velocity.y < 0f ? MIN_CLING_SPEED : 0f);
+			if (bKeyLeft) {
+				if (!slideLeft.isPlaying) {
+					slideLeft.Emit(1);
+					slideLeft.Play();
+				}
+			} else if (bKeyRight) {
+				if (!slideRight.isPlaying) {
+					slideRight.Emit(1);
+					slideRight.Play();
+				}
+			}
+		} else {
+			slideLeft.Stop();
+			slideRight.Stop();
 		}
 		
 		//apply velocity
@@ -369,7 +412,7 @@ public class RGPlayer : MonoBehaviour
 		GameObject p = PoolManager.Get(300, 1);
 		if (p != null) {
 			p.transform.position = pos - dir.normalized * 0.5f;
-			p.transform.LookAt(pos + dir);
+			p.transform.LookAt(pos + dir + Vector3.up);
 			p.particleSystem.Play();
 		}
 	}
