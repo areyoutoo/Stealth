@@ -309,6 +309,9 @@ public class RGPlayer : MonoBehaviour
 	{
 		Pooled.ReturnOrDestroy(gold);
 		
+		var p = PoolManager.Get(300,2);
+		p.GetComponent<PooledEmitter>().PlayAt(gold.transform.position);
+		
 		lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
 		currentGoldSpawned -= 1;
 		
@@ -365,10 +368,9 @@ public class RGPlayer : MonoBehaviour
 		
 		GameObject p = PoolManager.Get(300, 1);
 		if (p != null) {
-			p.transform.position = pos;
-//			p.transform.LookAt(pos + dir);
+			p.transform.position = pos - dir.normalized * 0.5f;
+			p.transform.LookAt(pos + dir);
 			p.particleSystem.Play();
-			p.particleSystem.Emit(10);
 		}
 	}
 }

@@ -16,8 +16,14 @@ public class PooledEmitter : Pooled {
 	}
 	
 	protected override void OnRemovedFromPool() {
+		base.OnRemovedFromPool();
 		if (playOnRemove) {
 			particleSystem.Play();
 		}
+	}
+	
+	public void PlayAt(Vector3 pos) {
+		transform.position = pos;
+		particleSystem.Play();
 	}
 }

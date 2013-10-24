@@ -16,6 +16,7 @@ public class Pool : RandomBag<Pooled> {
 		if (count > 0) {
 			Pooled p = base.GetNext();
 			Remove(p);
+			p.RemovedFromPool();
 			return p;
 		} else if (backupMember != null) {
 			string msg = string.Format("Pool {0} exhausted, spawning {1} new members", poolID, nextSpawnCount);
