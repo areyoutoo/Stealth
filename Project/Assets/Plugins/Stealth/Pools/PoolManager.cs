@@ -53,13 +53,25 @@ public class PoolManager : MonoBehaviour {
 	
 	
 	public GameObject Get(int poolID) {
+		Pooled p = GetInternal(poolID, true);
+		if (p != null) {
+			return p.gameObject;
+		} else {
+			return null;
+		}
+	}
+	
+	private Pooled GetInternal(int poolID, bool notifyRemoved) {
 		if (poolMap == null) {
 			RebuildPools();
 		}
 		if (poolMap.ContainsKey(poolID)) {
 			Pooled p = poolMap[poolID].GetNext();
 			if (p != null) {
-				return p.gameObject;
+				if (notifyRemoved) {
+					p.RemovedFromPool();
+				}
+				return p;
 			} else {
 				string msg = string.Format("Pool family {0} has no items in pool {1}", familyID, poolID);
 				Debug.LogWarning(msg, this);
@@ -68,6 +80,17 @@ public class PoolManager : MonoBehaviour {
 		} else {
 			string msg = string.Format("Pool family {0} has no such pool {1}", familyID, poolID);
 			Debug.LogWarning(msg, this);
+			return null;
+		}
+	}
+	
+	public GameObject GetAtPosition(int poolID, Vector3 pos) {
+		Pooled p = GetInternal(poolID, false);
+		if (p != null) {
+			p.transform.position = pos;
+			p.RemovedFromPool();
+			return p.gameObject;
+		} else {
 			return null;
 		}
 	}
