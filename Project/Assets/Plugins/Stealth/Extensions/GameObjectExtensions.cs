@@ -14,7 +14,7 @@ public static class GameObjectExtensions {
 		root.SetLayerRecursively(layer);
 	}
 	
-	public static bool RemoveComponent<T>(this GameObject root, bool immediate=false) where T : Component {
+	public static bool DestroyComponent<T>(this GameObject root, bool immediate=false) where T : Component {
 		T component = root.GetComponent<T>();
 		
 		bool found = component != null;
@@ -29,7 +29,7 @@ public static class GameObjectExtensions {
 		return found;
 	}
 	
-	public static bool RemoveComponents<T>(this GameObject root, bool immediate=false) where T : Component {
+	public static bool DestroyComponents<T>(this GameObject root, bool immediate=false) where T : Component {
 		T[] components = root.GetComponents<T>();
 		
 		bool found = components.Length > 0;
@@ -46,7 +46,7 @@ public static class GameObjectExtensions {
 		return found;
 	}
 	
-	public static bool RemoveComponentsInChildren<T>(this GameObject root, bool immediate=false) where T : Component {
+	public static bool DestroyComponentsInChildren<T>(this GameObject root, bool immediate=false) where T : Component {
 		T[] components = root.GetComponentsInChildren<T>();
 		
 		bool found = components.Length > 0;

@@ -151,6 +151,14 @@ public static class TransformExtensions {
 		return bottoms;
 	}
 	
+	public static void MultiplyScale(this Transform root, float multiplier) {
+		root.transform.localScale = root.transform.localScale * multiplier;
+	}
+	
+	public static void MultiplyScale(this Transform root, Vector3 multiplier) {
+		root.transform.localScale = root.transform.localScale.WithScale(multiplier);
+	}
+	
 	/// <summary>
 	/// Helper function for GetBottomTransforms.
 	/// </summary>

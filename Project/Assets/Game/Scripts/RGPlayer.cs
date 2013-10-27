@@ -350,10 +350,11 @@ public class RGPlayer : MonoBehaviour
 	
 	void CollectGold(GameObject gold)
 	{
-		Pooled.ReturnOrDestroy(gold);
+		NewPoolManager.Get<ParticlePool>("GoldPoof").GetNextAt(gold.transform.position);
+		NewPoolManager.Get<TransformPool>("Gold").Add(gold.transform);
 		
-		var p = PoolManager.Get(300,2);
-		p.GetComponent<PooledEmitter>().PlayAt(gold.transform.position);
+//		var p = PoolManager.Get(300,2);
+//		p.GetComponent<PooledEmitter>().PlayAt(gold.transform.position);
 		
 		lifetime = Mathf.Min(MAX_LIFETIME, lifetime + GOLD_LIFE_BONUS);
 		currentGoldSpawned -= 1;
@@ -409,11 +410,14 @@ public class RGPlayer : MonoBehaviour
 	void PlayJumpEffect(Vector3 pos, Vector3 dir) {
 		jumpSound.Play();
 		
-		GameObject p = PoolManager.Get(300, 1);
-		if (p != null) {
-			p.transform.position = pos - dir.normalized * 0.5f;
-			p.transform.LookAt(pos + dir + Vector3.up);
-			p.particleSystem.Play();
-		}
+		Quaternion rot = Quaternion.LookRotation(dir);
+		pos = pos - dir.normalized * 0.5f;
+		NewPoolManager.Get<ParticlePool>("JumpPoof").GetNextAt(pos, rot);
+//		GameObject p = PoolManager.Get(300, 1);
+//		if (p != null) {
+//			p.transform.position = pos - dir.normalized * 0.5f;
+//			p.transform.LookAt(pos + dir + Vector3.up);
+//			p.particleSystem.Play();
+//		}
 	}
 }

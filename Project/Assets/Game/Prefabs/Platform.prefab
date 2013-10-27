@@ -12,7 +12,6 @@ GameObject:
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
@@ -79,19 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715ee1a604ca8d04e9a7a57ba48ad74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f7f22f0386fc1242ae0258378296e03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool: 2
-  family: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

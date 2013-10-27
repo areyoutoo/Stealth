@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class EdUtils {
 	const int COUNTING_REPORT_INTERVAL = 500;
+	
+	public static void SceneObjectsAction<T>(string title, System.Func<T, bool> action) where T : Object {
+		T[] objects = Object.FindObjectsOfType(typeof(T)).OfType<T>().ToArray();
+		SceneAction<T>(title, objects, action);
+	}
 	
 	public static void SceneAction<T>(string title, IEnumerable<T> targets, System.Func<T, bool> action) {				
 		try {
