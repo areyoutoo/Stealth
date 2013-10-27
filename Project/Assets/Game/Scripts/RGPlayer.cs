@@ -308,6 +308,17 @@ public class RGPlayer : Actor
 		if (Time.timeSinceLevelLoad < MESSAGE_TIME) {
 			GUILayout.Label("Collect gold to restore your lifespan!");
 		}
+		
+		//TODO
+		switch (currentPickup) {
+		case PickupType.None: 
+			break;
+		case PickupType.Shuriken:
+			GUILayout.Label("Shurikens: " + currentPickupCount); 
+			break;
+		default:
+			throw new System.NotImplementedException("RGPlayer.OnGUI " + currentPickup);
+		}
 	}
 	
 	float ApplyDrag(float inVelocity, float inDrag, float minVelocity = 0f)

@@ -4919,7 +4919,7 @@ GameObject:
   - 4: {fileID: 150538389}
   - 33: {fileID: 150538391}
   - 23: {fileID: 150538390}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8894,7 +8894,7 @@ GameObject:
   - 54: {fileID: 243370847}
   - 114: {fileID: 243370846}
   - 135: {fileID: 243370848}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9131,7 +9131,7 @@ GameObject:
   - 4: {fileID: 248212169}
   - 33: {fileID: 248212171}
   - 23: {fileID: 248212170}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10819,6 +10819,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1981727442}
   m_GameObject: {fileID: 278983933}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &279449153
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1483521818}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.4564209
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
+  m_RootGameObject: {fileID: 460234787}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &284670738
 Prefab:
   m_ObjectHideFlags: 0
@@ -11116,7 +11156,7 @@ GameObject:
   - 4: {fileID: 299727634}
   - 33: {fileID: 299727636}
   - 23: {fileID: 299727635}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16187,7 +16227,7 @@ GameObject:
   - 54: {fileID: 349052870}
   - 114: {fileID: 349052869}
   - 135: {fileID: 349052871}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19508,7 +19548,7 @@ GameObject:
   - 4: {fileID: 412334524}
   - 33: {fileID: 412334526}
   - 23: {fileID: 412334525}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19881,7 +19921,7 @@ GameObject:
   - 4: {fileID: 431434526}
   - 33: {fileID: 431434528}
   - 23: {fileID: 431434527}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20572,7 +20612,7 @@ MeshFilter:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 460234788}
@@ -20580,7 +20620,7 @@ GameObject:
   - 54: {fileID: 460234791}
   - 114: {fileID: 460234790}
   - 135: {fileID: 460234792}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20591,7 +20631,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 460234787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3.4564209}
@@ -20605,7 +20645,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 460234787}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -20620,7 +20660,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400002, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 460234787}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -20632,7 +20672,7 @@ Rigidbody:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 5400000, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 460234787}
   serializedVersion: 2
   m_Mass: 1
@@ -20648,7 +20688,7 @@ SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 13500000, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 460234787}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -26257,7 +26297,7 @@ GameObject:
   - 54: {fileID: 654353627}
   - 114: {fileID: 654353626}
   - 135: {fileID: 654353628}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31476,13 +31516,13 @@ MeshFilter:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100002, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 746959873}
   - 33: {fileID: 746959875}
   - 23: {fileID: 746959874}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31493,7 +31533,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400002, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 746959872}
   m_LocalRotation: {x: -.270598084, y: -.65328151, z: .270598084, w: .65328151}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -31505,7 +31545,7 @@ Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 2300000, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 746959872}
   m_Enabled: 1
   m_CastShadows: 1
@@ -31524,7 +31564,7 @@ MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 3300000, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 746959872}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &749161282
@@ -36262,7 +36302,7 @@ GameObject:
   - 54: {fileID: 800004468}
   - 114: {fileID: 800004467}
   - 135: {fileID: 800004469}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36612,46 +36652,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1779936864}
   m_GameObject: {fileID: 817490027}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &819475038
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1483521818}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3.4564209
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_RootGameObject: {fileID: 460234787}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &820397417
 GameObject:
   m_ObjectHideFlags: 0
@@ -36923,7 +36923,7 @@ GameObject:
   - 4: {fileID: 843756527}
   - 33: {fileID: 843756529}
   - 23: {fileID: 843756528}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43055,6 +43055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0faca67cda2507047b122fd33c29c955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   guardPrefab: {fileID: 100000, guid: 7d1b1fb7656027343a8b35385cf9eafa, type: 2}
   jumpSound: {fileID: 928816689}
   goldSound: {fileID: 1905859799}
@@ -43322,7 +43323,7 @@ GameObject:
   - 54: {fileID: 1013507166}
   - 114: {fileID: 1013507165}
   - 135: {fileID: 1013507167}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44011,7 +44012,7 @@ GameObject:
   - 4: {fileID: 1051900159}
   - 33: {fileID: 1051900161}
   - 23: {fileID: 1051900160}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44410,7 +44411,7 @@ GameObject:
   - 54: {fileID: 1082492296}
   - 114: {fileID: 1082492295}
   - 135: {fileID: 1082492297}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45769,7 +45770,7 @@ GameObject:
   - 4: {fileID: 1163834102}
   - 33: {fileID: 1163834104}
   - 23: {fileID: 1163834103}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46030,7 +46031,7 @@ GameObject:
   - 54: {fileID: 1179921990}
   - 114: {fileID: 1179921989}
   - 135: {fileID: 1179921991}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47963,7 +47964,7 @@ GameObject:
   - 4: {fileID: 1221690072}
   - 33: {fileID: 1221690074}
   - 23: {fileID: 1221690073}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54683,7 +54684,7 @@ GameObject:
   - 4: {fileID: 1391960842}
   - 33: {fileID: 1391960844}
   - 23: {fileID: 1391960843}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64402,7 +64403,7 @@ GameObject:
   - 4: {fileID: 1529478060}
   - 33: {fileID: 1529478062}
   - 23: {fileID: 1529478061}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68308,7 +68309,7 @@ GameObject:
   - 4: {fileID: 1546772058}
   - 33: {fileID: 1546772060}
   - 23: {fileID: 1546772059}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69606,7 +69607,7 @@ GameObject:
   - 4: {fileID: 1552965573}
   - 33: {fileID: 1552965575}
   - 23: {fileID: 1552965574}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71656,7 +71657,7 @@ GameObject:
   - 4: {fileID: 1599217484}
   - 33: {fileID: 1599217486}
   - 23: {fileID: 1599217485}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71973,7 +71974,7 @@ GameObject:
   - 4: {fileID: 1623896395}
   - 33: {fileID: 1623896397}
   - 23: {fileID: 1623896396}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77220,13 +77221,13 @@ Prefab:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100004, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1736575229}
   - 33: {fileID: 1736575231}
   - 23: {fileID: 1736575230}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77237,7 +77238,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400004, guid: 001fcde3d7cf2584486614cbb308a5ab, type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 1736575228}
   m_LocalRotation: {x: .270598233, y: -.65328145, z: -.270598233, w: .65328145}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -77249,7 +77250,7 @@ Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 2300002, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 1736575228}
   m_Enabled: 1
   m_CastShadows: 1
@@ -77268,7 +77269,7 @@ MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 3300002, guid: 001fcde3d7cf2584486614cbb308a5ab,
     type: 2}
-  m_PrefabInternal: {fileID: 819475038}
+  m_PrefabInternal: {fileID: 279449153}
   m_GameObject: {fileID: 1736575228}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1736624842
@@ -77365,7 +77366,7 @@ GameObject:
   - 54: {fileID: 1738481905}
   - 114: {fileID: 1738481904}
   - 135: {fileID: 1738481906}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79780,7 +79781,7 @@ GameObject:
   - 4: {fileID: 1809515721}
   - 33: {fileID: 1809515723}
   - 23: {fileID: 1809515722}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

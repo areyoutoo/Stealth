@@ -11,6 +11,7 @@ public class Shuriken : MonoBehaviour {
 	
 	public void FirstLaunch(Vector3 dir) {
 		bounces = 2;
+		rigidbody.velocity = Vector3.zero;
 		Launch(dir);
 	}
 	
