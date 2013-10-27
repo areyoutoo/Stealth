@@ -13,11 +13,8 @@ public class RoomInfo : MonoBehaviour {
 	public RoomType roomType { get; protected set; }
 	public IntVector2 coord { get; protected set; }
 	
-	MapGen mapGen;
-	
 	public void Init(MapGen map, IntVector2 coord) {
 		this.coord = coord;
-		mapGen = map;
 		
 		Vector3 center = coord.ToVector3(0f) * MapGen.ROOM_SIZE;
 		bounds = new Bounds(center, (Vector3.one * 2f * (MapGen.ROOM_SIZE + MapGen.BARRIER_WIDTH)).WithZ(0.1f));
@@ -73,5 +70,6 @@ public class RoomInfo : MonoBehaviour {
 		
 		Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
 		Transform pickup = PoolManager.Get<TransformPool>(pool).GetNextAt(pos, Quaternion.LookRotation(Vector3.right));
+		pickup.parent = transform;
 	}
 }

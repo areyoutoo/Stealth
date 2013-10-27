@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class RGPlayer : MonoBehaviour 
+public class RGPlayer : Actor
 {
 	[SerializeField] GameObject guardPrefab;
 	
@@ -13,6 +13,9 @@ public class RGPlayer : MonoBehaviour
 	[SerializeField] ParticleSystem slideRight;
 	[SerializeField] ParticleSystem dragLeft;
 	[SerializeField] ParticleSystem dragRight;
+	
+	PickupType currentPickup = PickupType.None;
+	int currentPickupCount;
 	
 	public static RGPlayer instance
 	{
@@ -273,13 +276,14 @@ public class RGPlayer : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 		
+		if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.LeftControl)) {
+			UsePickup();
+		}
+		
+		//TODO
 		if (Input.GetKeyDown(KeyCode.B)) {
-			Vector3 pos = transform.position + Random.onUnitSphere.WithZ(0f);
-			Quaternion rot = Quaternion.LookRotation(transform.right);
-			Transform s = PoolManager.Get<TransformPool>("Shuriken").GetNextAt(pos, rot);
-//			s.LookAt(transform.position + Vector3.up, Vector3.up);
-			s.rotation = Quaternion.LookRotation(transform.right);
-			
+			currentPickup = PickupType.Shuriken;
+			currentPickupCount = 100;
 		}
 		
 		if (controller.isGrounded && !wasGrounded) {
@@ -347,7 +351,7 @@ public class RGPlayer : MonoBehaviour
 			CollectGold(hit.gameObject);
 			break;
 		case LAYER_GUARD:
-			Lose();
+			Damage();
 			break;
 		default:
 			break;
@@ -368,10 +372,40 @@ public class RGPlayer : MonoBehaviour
 	void CollectPickup(GameObject pickup) {
 		PoolManager.Get<ParticlePool>("PickupPoof").GetNextAt(pickup.transform.position);
 		
-		//TODO
-		
 		Pickup p = pickup.GetComponent<Pickup>();
+		currentPickup = p.type;
+		currentPickupCount = p.count;
+		
+		//TODO: do something with pickup type?
+		
+		//TODO: better sound?
+		goldSound.Play();
+		
 		p.ReturnToPool();
+	}
+	
+	void UsePickup() {
+		switch (currentPickup) {
+		case PickupType.None: 
+			return;
+			
+		case PickupType.Shuriken:
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition.WithZ(0f)).WithZ(transform.position.z);
+			Vector3 dir = mousePos - transform.position;
+			Vector3 pos = transform.position + dir.WithLength(1.5f);
+			
+			Transform t = PoolManager.Get<TransformPool>("Shuriken").GetNextAt(pos, Quaternion.LookRotation(Vector3.right));
+			t.GetComponent<Shuriken>().FirstLaunch(dir);
+			
+			break;
+			
+		default: throw new System.NotImplementedException("RGPlayer.UsePickup " + currentPickup);
+		}
+		
+		currentPickupCount -= 1;
+		if (currentPickupCount < 1) {
+			currentPickup = PickupType.None;
+		}
 	}
 	
 //	void SpawnGold()
@@ -425,5 +459,10 @@ public class RGPlayer : MonoBehaviour
 		Quaternion rot = Quaternion.LookRotation(dir);
 		pos = pos - dir.normalized * 0.5f;
 		PoolManager.Get<ParticlePool>("JumpPoof").GetNextAt(pos, rot);
+	}
+	
+	public override void Die () {
+		//TODO
+		Lose();
 	}
 }
