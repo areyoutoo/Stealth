@@ -24,7 +24,7 @@ public class RoomInfo : MonoBehaviour {
 		SpawnGold();
 		SpawnGuards();
 		
-		if (Random.value < 0.2f) {
+		if (Random.value < 0.2f || coord == IntVector2.zero) {
 			SpawnPickup();
 		}
 	}
@@ -42,6 +42,8 @@ public class RoomInfo : MonoBehaviour {
 	}
 	
 	void SpawnGuards() {
+		if (coord == IntVector2.zero) return;
+		
 		int count = Random.Range(3, 6);
 		for (int i=0; i<count; i++) {
 			Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
