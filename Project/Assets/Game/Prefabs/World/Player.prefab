@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc22d909769de59499101b21687fea4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   family: 1
 --- !u!114 &11400004
 MonoBehaviour:
@@ -614,6 +615,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc22d909769de59499101b21687fea4e, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   family: 300
 --- !u!124 &12400000
