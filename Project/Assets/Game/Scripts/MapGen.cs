@@ -139,10 +139,8 @@ public class MapGen : MonoBehaviour {
 	}
 	
 	void SpawnBlock(GameObject parent, Vector3 center, Vector3 scale) {
-		Transform block = NewPoolManager.Get<TransformPool>("Boundary").GetNextAt(center);
-//		GameObject block = poolManager.Get(1);// (GameObject)Instantiate(barrierPrefab);
+		Transform block = PoolManager.Get<TransformPool>("Boundary").GetNextAt(center);
 		block.localScale = scale;
-//		block.transform.position = center;
 		block.parent = parent.transform;
 	}
 	

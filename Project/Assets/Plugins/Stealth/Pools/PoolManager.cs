@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public static class NewPoolManager {
+public static class PoolManager {
 	static Dictionary<string, ComponentPoolBase> poolMap = new Dictionary<string, ComponentPoolBase>();
 	
 	public static void Add(ComponentPoolBase pool) {

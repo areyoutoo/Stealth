@@ -33,14 +33,9 @@ public class RoomInfo : MonoBehaviour {
 	void SpawnGold() {
 		int count = Random.Range(5,10);
 		for (int i=0; i<count; i++) {
-//			GameObject gold = mapGen.poolManager.Get(300);
-			
 			Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
-			Transform gold = NewPoolManager.Get<TransformPool>("Gold").GetNextAt(pos);
+			Transform gold = PoolManager.Get<TransformPool>("Gold").GetNextAt(pos);
 			gold.parent = transform;
-			
-//			gold.transform.position = Randomx.InBounds(innerBounds).WithZ(0f);
-//			gold.transform.parent = transform;
 		}
 	}
 	
@@ -51,21 +46,11 @@ public class RoomInfo : MonoBehaviour {
 		int count = Random.Range(10, 15);
 		for (int i=0; i<count; i++) {
 			Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
-			Transform platform = NewPoolManager.Get<TransformPool>("Platform").GetNextAt(pos);
+			Transform platform = PoolManager.Get<TransformPool>("Platform").GetNextAt(pos);
 			platform.parent = transform;
 			
 			Vector3 scale = new Vector3(Random.Range(0.5f, 2f), 1f, 1f);
 			platform.localScale = Vector3.Scale(platform.transform.localScale, scale);
-			
-//			GameObject platform = mapGen.poolManager.Get(2);
-//			
-//			Vector3 v = Randomx.InBounds(innerBounds).WithZ(0f);
-//			platform.transform.position = v;
-//			
-//			Vector3 scale = new Vector3(Random.Range(0.5f, 2f), 1f, 1f);
-//			platform.transform.localScale = Vector3.Scale(platform.transform.localScale, scale);
-//			
-//			platform.transform.parent = transform;
 		}
 	}
 }

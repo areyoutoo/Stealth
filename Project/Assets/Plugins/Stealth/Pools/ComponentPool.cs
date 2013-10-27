@@ -105,12 +105,12 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 				Add(item);
 			}
 		}
-		NewPoolManager.Add(this);
+		PoolManager.Add(this);
 		OnAwake();
 	}
 	
 	protected void OnDestroy() {
-		NewPoolManager.Remove(id);
+		PoolManager.Remove(id);
 	}
 	
 	protected void AddClones() {
