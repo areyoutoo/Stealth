@@ -21,10 +21,15 @@ public class RoomInfo : MonoBehaviour {
 		
 		Vector3 center = coord.ToVector3(0f) * MapGen.ROOM_SIZE;
 		bounds = new Bounds(center, (Vector3.one * 2f * (MapGen.ROOM_SIZE + MapGen.BARRIER_WIDTH)).WithZ(0.1f));
-		innerBounds = new Bounds(center, (Vector3.one * 2f * MapGen.ROOM_SIZE).WithZ(0.1f));
+		innerBounds = new Bounds(center, (Vector3.one * 1.8f * MapGen.ROOM_SIZE).WithZ(0.1f));
 		
 		SpawnPlatforms();
 		SpawnGold();
+		SpawnGuards();
+		
+		if (Random.value < 0.2f) {
+			SpawnPickup();
+		}
 	}
 	
 	protected void Start() {
@@ -40,6 +45,12 @@ public class RoomInfo : MonoBehaviour {
 	}
 	
 	void SpawnGuards() {
+		int count = Random.Range(3, 6);
+		for (int i=0; i<count; i++) {
+			Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
+			Transform guard = PoolManager.Get<TransformPool>("Guard").GetNextAt(pos);
+			guard.parent = transform;
+		}
 	}
 	
 	void SpawnPlatforms() {
@@ -52,5 +63,15 @@ public class RoomInfo : MonoBehaviour {
 			Vector3 scale = new Vector3(Random.Range(0.5f, 2f), 1f, 1f);
 			platform.localScale = Vector3.Scale(platform.transform.localScale, scale);
 		}
+	}
+	
+	void SpawnPickup() {
+		string[] pools = new string[]{
+			"ShurikenPickup",
+		};
+		string pool = pools[Random.Range(0, pools.Length)];
+		
+		Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
+		Transform pickup = PoolManager.Get<TransformPool>(pool).GetNextAt(pos, Quaternion.LookRotation(Vector3.right));
 	}
 }

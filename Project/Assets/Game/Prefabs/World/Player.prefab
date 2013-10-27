@@ -79,7 +79,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400008}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: MapGen
   m_TagString: Untagged
@@ -128,7 +127,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400014}
-  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -570,7 +568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0faca67cda2507047b122fd33c29c955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldPrefab: {fileID: 100000, guid: b6504f5df2a55cb488e0010a912e8bc5, type: 2}
   guardPrefab: {fileID: 100000, guid: 7d1b1fb7656027343a8b35385cf9eafa, type: 2}
   jumpSound: {fileID: 8200004}
   goldSound: {fileID: 8200002}
@@ -579,19 +576,6 @@ MonoBehaviour:
   slideRight: {fileID: 19800002}
   dragLeft: {fileID: 19800006}
   dragRight: {fileID: 19800000}
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc22d909769de59499101b21687fea4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  family: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -605,19 +589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrierPrefab: {fileID: 100000, guid: d315edd679ef5fd4282114a4a4bffe50, type: 2}
   platformPrefab: {fileID: 100000, guid: 97c5356e1061a33439081d8d44daaf82, type: 2}
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc22d909769de59499101b21687fea4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  family: 300
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

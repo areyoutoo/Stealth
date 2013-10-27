@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class RGPlayer : MonoBehaviour 
 {
-	
-	[SerializeField] GameObject goldPrefab;
 	[SerializeField] GameObject guardPrefab;
 	
 	[SerializeField] AudioSource jumpSound;
@@ -66,6 +64,7 @@ public class RGPlayer : MonoBehaviour
 	
 	const int LAYER_GOLD = 13;
 	const int LAYER_GUARD = 11;
+	const int LAYER_PICKUP = 15;
 	
 	int jumpThroughCheckMask;
 	
@@ -90,11 +89,6 @@ public class RGPlayer : MonoBehaviour
 		jumpThroughDisabledColliders = new List<Collider>(20);
 		
 		SpawnGuards();
-		
-		for (int i=0; i<MAX_GOLD_SPAWNED; i++) {
-			SpawnGold();
-		}
-		InvokeRepeating("SpawnGold", GOLD_SPAWN_DELAY, GOLD_SPAWN_DELAY);
 	}
 	
 	void Update()
@@ -279,6 +273,15 @@ public class RGPlayer : MonoBehaviour
 			Application.LoadLevel(0);
 		}
 		
+		if (Input.GetKeyDown(KeyCode.B)) {
+			Vector3 pos = transform.position + Random.onUnitSphere.WithZ(0f);
+			Quaternion rot = Quaternion.LookRotation(transform.right);
+			Transform s = PoolManager.Get<TransformPool>("Shuriken").GetNextAt(pos, rot);
+//			s.LookAt(transform.position + Vector3.up, Vector3.up);
+			s.rotation = Quaternion.LookRotation(transform.right);
+			
+		}
+		
 		if (controller.isGrounded && !wasGrounded) {
 			landSound.Play();
 			wasGrounded = true;
@@ -331,6 +334,9 @@ public class RGPlayer : MonoBehaviour
 		case LAYER_GOLD:
 			CollectGold(other.gameObject);
 			break;
+		case LAYER_PICKUP:
+			CollectPickup(other.gameObject);
+			break;
 		}
 	}
 	
@@ -359,26 +365,35 @@ public class RGPlayer : MonoBehaviour
 		goldSound.Play();
 	}
 	
-	void SpawnGold()
-	{
-		return;
-		currentGoldSpawned += 1;
+	void CollectPickup(GameObject pickup) {
+		PoolManager.Get<ParticlePool>("PickupPoof").GetNextAt(pickup.transform.position);
 		
-		var guards = (RGGuard[])Object.FindObjectsOfType(typeof(RGGuard));
-		if (guards.Length < 1) return;
+		//TODO
 		
-		var guard = guards[Random.Range(0, guards.Length-1)] as RGGuard;
-		
-		Vector3 pos = guard.transform.position + Vector3.up * Random.Range(0.25f, 2f);
-		float offset = Random.Range(2f, 5f);
-		if (Random.value < 0.5f) {
-			offset *= -1f;
-		}
-		
-		pos.x += offset;
-		
-		GameObject.Instantiate(goldPrefab, pos, Quaternion.identity);
+		Pickup p = pickup.GetComponent<Pickup>();
+		p.ReturnToPool();
 	}
+	
+//	void SpawnGold()
+//	{
+//		return;
+//		currentGoldSpawned += 1;
+//		
+//		var guards = (RGGuard[])Object.FindObjectsOfType(typeof(RGGuard));
+//		if (guards.Length < 1) return;
+//		
+//		var guard = guards[Random.Range(0, guards.Length-1)] as RGGuard;
+//		
+//		Vector3 pos = guard.transform.position + Vector3.up * Random.Range(0.25f, 2f);
+//		float offset = Random.Range(2f, 5f);
+//		if (Random.value < 0.5f) {
+//			offset *= -1f;
+//		}
+//		
+//		pos.x += offset;
+//		
+//		GameObject.Instantiate(goldPrefab, pos, Quaternion.identity);
+//	}
 	
 	void SpawnGuards()
 	{

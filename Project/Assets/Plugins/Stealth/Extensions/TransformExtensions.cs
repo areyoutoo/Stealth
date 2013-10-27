@@ -36,6 +36,10 @@ public static class TransformExtensions {
 		}
 	}
 	
+	public static void AttachChild(this Transform root, Transform child) {
+		child.parent = root;
+	}
+	
 	/// <summary>
 	/// Clears the position of this transform without affecting its children.
 	/// </summary>

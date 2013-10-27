@@ -58,6 +58,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 				members.Add(item);
 				OnAdd(item);
 			}
+			item.transform.parent = transform;
 			item.gameObject.SetActive(false);
 		}
 	}
