@@ -461,8 +461,9 @@ public class RGPlayer : Actor
 		PoolManager.Get<ParticlePool>("JumpPoof").GetNextAt(pos, rot);
 	}
 	
-	public override void Die () {
+	protected override void Die () {
 		//TODO
-		Lose();
+		enabled = false;
+		Invoke("Lose", 1.2f);
 	}
 }

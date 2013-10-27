@@ -30,6 +30,10 @@ public class Shuriken : MonoBehaviour {
 			} else {
 				Destroy(collision.gameObject);
 			}
+			
+			Quaternion rot = Quaternion.LookRotation(collision.contacts[0].normal);
+			PoolManager.Get<ParticlePool>("Blood").GetNextAt(transform.position, rot);
+			
 			Shatter();
 		} else if (bounces-- > 0) {
 			Debug.Log("Shuriken bounce " + bounces);
