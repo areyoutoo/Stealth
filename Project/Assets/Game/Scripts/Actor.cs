@@ -11,6 +11,7 @@ public class Actor : MonoBehaviour {
 	}
 	
 	protected virtual void Die() {
-		PoolManager.Get<TransformPool>(gameObject.name).Add(transform);
+		enabled = false;
+		GetComponent<Death>().Die();
 	}
 }

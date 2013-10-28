@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
+  - 114: {fileID: 11400002}
   m_Layer: 11
   m_Name: Guard
   m_TagString: Untagged
@@ -79,6 +80,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: 41274721e9415164ea511e408501bfb9, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0933d6d8c098848a58cdb648739675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

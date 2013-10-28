@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -568,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0faca67cda2507047b122fd33c29c955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardPrefab: {fileID: 100000, guid: 7d1b1fb7656027343a8b35385cf9eafa, type: 2}
+  health: 1
   jumpSound: {fileID: 8200004}
   goldSound: {fileID: 8200002}
   landSound: {fileID: 8200000}
@@ -576,6 +577,17 @@ MonoBehaviour:
   slideRight: {fileID: 19800002}
   dragLeft: {fileID: 19800006}
   dragRight: {fileID: 19800000}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11450a195623b74e824195b3942b8e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

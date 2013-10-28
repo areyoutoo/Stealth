@@ -69,6 +69,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 		} else {
 			while (count-- > 0) {
 				T item = (T)Instantiate(backupMember, backupMember.transform.position, backupMember.transform.rotation);
+				item.name = backupMember.name;
 				Add(item);
 			}
 		}

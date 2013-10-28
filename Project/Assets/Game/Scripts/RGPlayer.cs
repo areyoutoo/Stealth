@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class RGPlayer : Actor
 {
-	[SerializeField] GameObject guardPrefab;
-	
 	[SerializeField] AudioSource jumpSound;
 	[SerializeField] AudioSource goldSound;
 	[SerializeField] AudioSource landSound;
@@ -90,8 +88,6 @@ public class RGPlayer : Actor
 		
 		jumpThroughCheckMask |= 1 << LayerMask.NameToLayer("JumpThrough");
 		jumpThroughDisabledColliders = new List<Collider>(20);
-		
-		SpawnGuards();
 	}
 	
 	void Update()
@@ -269,7 +265,7 @@ public class RGPlayer : Actor
 		//drain lifetime
 		lifetime -= Time.deltaTime;
 		if (lifetime < 0f) {
-			Lose();
+			Die();
 		}
 		
 		if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -336,11 +332,11 @@ public class RGPlayer : Actor
 		Physics.IgnoreCollision(collider, c, bCanJumpThrough);
 	}
 	
-	void Lose()
-	{
-		Debug.Log("You totally lose, bro");
-		Application.LoadLevel(Application.loadedLevel);
-	}
+//	void Lose()
+//	{
+//		Debug.Log("You totally lose, bro");
+//		Application.LoadLevel(Application.loadedLevel);
+//	}
 	
 	void OnTriggerEnter(Collider other)
 	{
@@ -419,48 +415,6 @@ public class RGPlayer : Actor
 		}
 	}
 	
-//	void SpawnGold()
-//	{
-//		return;
-//		currentGoldSpawned += 1;
-//		
-//		var guards = (RGGuard[])Object.FindObjectsOfType(typeof(RGGuard));
-//		if (guards.Length < 1) return;
-//		
-//		var guard = guards[Random.Range(0, guards.Length-1)] as RGGuard;
-//		
-//		Vector3 pos = guard.transform.position + Vector3.up * Random.Range(0.25f, 2f);
-//		float offset = Random.Range(2f, 5f);
-//		if (Random.value < 0.5f) {
-//			offset *= -1f;
-//		}
-//		
-//		pos.x += offset;
-//		
-//		GameObject.Instantiate(goldPrefab, pos, Quaternion.identity);
-//	}
-	
-	void SpawnGuards()
-	{
-		var objects = (Platform[])Object.FindObjectsOfType(typeof(Platform));
-		var platforms = new List<Platform>(objects);
-		if (platforms.Count == 0) return;
-		
-		for (int i=0; i<GUARD_COUNT; i++) {
-			var index = Random.Range(0, platforms.Count-1);
-			var platform = platforms[index];
-			platforms.RemoveAt(index);
-			
-			Vector3 pos = platform.collider.bounds.max;			
-			float x = Mathf.Lerp(platform.collider.bounds.min.x, platform.collider.bounds.max.x, Random.Range(0.25f, 0.75f));
-			pos.x = x;
-			pos.z = platform.collider.bounds.center.z;
-			GameObject.Instantiate(guardPrefab, pos, Quaternion.identity);
-		}
-	}
-	
-	
-	
 	void PlayLandEffect(Vector3 pos) {
 	}
 	
@@ -472,9 +426,9 @@ public class RGPlayer : Actor
 		PoolManager.Get<ParticlePool>("JumpPoof").GetNextAt(pos, rot);
 	}
 	
-	protected override void Die () {
-		//TODO
-		enabled = false;
-		Invoke("Lose", 1.2f);
-	}
+//	protected override void Die () {
+//		//TODO
+//		enabled = false;
+//		Invoke("Lose", 1.2f);
+//	}
 }
