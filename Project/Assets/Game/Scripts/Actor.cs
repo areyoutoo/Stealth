@@ -16,6 +16,10 @@ public class Actor : MonoBehaviour {
 	}
 	
 	protected virtual void Die() {
+		
+		//TODO: disabling actor might be a bad strategy
+		//maybe move all dying into a ragdoll thing?
+		//more assets, but simpler to control
 		enabled = false;
 		GetComponent<Death>().Die();
 	}
