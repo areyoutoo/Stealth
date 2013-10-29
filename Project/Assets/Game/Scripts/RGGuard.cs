@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class RGGuard : Actor {
+public class RGGuard : MonoBehaviour {
 	
 	[SerializeField] GameObject bulletPrefab;
 		

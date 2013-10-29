@@ -392,18 +392,19 @@ public class RGPlayer : Actor
 	}
 	
 	void UsePickup() {
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition.WithZ(0f)).WithZ(transform.position.z);
+		Vector3 dir = mousePos - transform.position;
+		Vector3 pos;
+		Transform item;
+		
 		switch (currentPickup) {
 		case PickupType.None: 
 			return;
 			
 		case PickupType.Shuriken:
-			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition.WithZ(0f)).WithZ(transform.position.z);
-			Vector3 dir = mousePos - transform.position;
-			Vector3 pos = transform.position + dir.WithLength(1.5f);
-			
-			Transform t = PoolManager.Get<TransformPool>("Shuriken").GetNextAt(pos, Quaternion.LookRotation(Vector3.right));
-			t.GetComponent<Shuriken>().FirstLaunch(dir);
-			
+			pos = transform.position + dir.WithLength(1.5f);
+			item = PoolManager.Get<TransformPool>("Shuriken").GetNextAt(pos, Quaternion.LookRotation(Vector3.right));
+			item.GetComponent<Shuriken>().FirstLaunch(dir, 3);
 			break;
 			
 		default: throw new System.NotImplementedException("RGPlayer.UsePickup " + currentPickup);
