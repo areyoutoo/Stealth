@@ -12,8 +12,8 @@ public class RGPlayer : Actor
 	[SerializeField] ParticleSystem dragLeft;
 	[SerializeField] ParticleSystem dragRight;
 	
-	PickupType currentPickup = PickupType.None;
-	int currentPickupCount;
+	PickupType currentPickup = PickupType.Shuriken;
+	int currentPickupCount = 10;
 	
 	public static RGPlayer instance
 	{
