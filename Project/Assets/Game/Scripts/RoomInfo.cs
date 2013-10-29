@@ -16,7 +16,7 @@ public class RoomInfo : MonoBehaviour {
 	public void Init(MapGen map, IntVector2 coord) {
 		this.coord = coord;
 		
-		Vector3 center = coord.ToVector3(0f) * MapGen.ROOM_SIZE;
+		Vector3 center = coord.ToVector3(0f) * (MapGen.ROOM_SIZE + MapGen.BARRIER_WIDTH);
 		bounds = new Bounds(center, (Vector3.one * 2f * (MapGen.ROOM_SIZE + MapGen.BARRIER_WIDTH)).WithZ(0.1f));
 		innerBounds = new Bounds(center, (Vector3.one * 1.8f * MapGen.ROOM_SIZE).WithZ(0.1f));
 		

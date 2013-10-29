@@ -6,6 +6,7 @@ public class RGPlayer : Actor
 	[SerializeField] AudioSource jumpSound;
 	[SerializeField] AudioSource goldSound;
 	[SerializeField] AudioSource landSound;
+	[SerializeField] AudioSource bladeSound;
 	
 	[SerializeField] ParticleSystem slideLeft;
 	[SerializeField] ParticleSystem slideRight;
@@ -220,6 +221,7 @@ public class RGPlayer : Actor
 			velocity.y = 0f;
 			bPlaySlideLeft = false;
 			bPlaySlideRight = false;
+			//TODO: do something about landing checks here?
 		}
 		
 		//are we hitting a wall?
@@ -325,8 +327,6 @@ public class RGPlayer : Actor
 		default:
 			throw new System.NotImplementedException("RGPlayer.OnGUI " + currentPickup);
 		}
-		
-		GUILayout.Label(velocity.ToString());
 	}
 	
 	float ApplyDrag(float inVelocity, float inDrag, float minVelocity = 0f)
@@ -391,6 +391,8 @@ public class RGPlayer : Actor
 	void CollectPickup(GameObject pickup) {
 		PoolManager.Get<ParticlePool>("PickupPoof").GetNextAt(pickup.transform.position);
 		
+		
+		
 		Pickup p = pickup.GetComponent<Pickup>();
 		currentPickup = p.type;
 		currentPickupCount = p.count;
@@ -398,7 +400,7 @@ public class RGPlayer : Actor
 		//TODO: do something with pickup type?
 		
 		//TODO: better sound?
-		goldSound.Play();
+		bladeSound.Play();
 		
 		p.ReturnToPool();
 	}

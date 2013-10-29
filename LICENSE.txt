@@ -32,3 +32,22 @@ This project includes music by Alex Beroza.
 http://ccmixter.org/files/AlexBeroza/32423
 is licensed under a Creative Commons license:
 http://creativecommons.org/licenses/by/3.0/
+
+
+
+This project includes sound by Jason Elrod.
+
+"Blade Small" by JasonElrod
+http://freesound.org/people/JasonElrod/sounds/85430/
+is licensed under a Creative Commons license:
+http://creativecommons.org/licenses/by/3.0/
+
+
+
+This project incorporates modified versions of some public domain assets:
+
+"coin 2" by soundnimja
+http://freesound.org/people/soundnimja/sounds/173320/
+
+"Knife Stab" by Mixedupmoviestuff
+http://freesound.org/people/Mixedupmoviestuff/sounds/179222/

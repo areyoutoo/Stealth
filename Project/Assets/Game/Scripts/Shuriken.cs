@@ -3,6 +3,8 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Shuriken : MonoBehaviour {
+	[SerializeField] AudioSource hitSound;
+	
 	int bounces;
 	
 	Vector3 launchDir;
@@ -38,6 +40,8 @@ public class Shuriken : MonoBehaviour {
 			
 			Quaternion rot = Quaternion.LookRotation(collision.contacts[0].normal);
 			PoolManager.Get<ParticlePool>(bloodParticle).GetNextAt(transform.position, rot);
+			
+			hitSound.Play();
 			
 			Shatter();
 		} else if (--bounces > 0) {
