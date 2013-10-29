@@ -199,23 +199,17 @@ public class RGPlayer : Actor
 			dragRight.Stop();
 		}
 		
+		bool bPlaySlideLeft = false;
+		bool bPlaySlideRight = false;
+		
 		
 		if (bWallCling) {
 			velocity.y = ApplyDrag(velocity.y, CLING_DRAG * Time.deltaTime, velocity.y < 0f ? MIN_CLING_SPEED : 0f);
 			if (bKeyLeft) {
-				if (!slideLeft.isPlaying) {
-					slideLeft.Emit(1);
-					slideLeft.Play();
-				}
+				bPlaySlideLeft = true;
 			} else if (bKeyRight) {
-				if (!slideRight.isPlaying) {
-					slideRight.Emit(1);
-					slideRight.Play();
-				}
+				bPlaySlideRight = true;
 			}
-		} else {
-			slideLeft.Stop();
-			slideRight.Stop();
 		}
 		
 		//apply velocity
@@ -224,6 +218,8 @@ public class RGPlayer : Actor
 		//are we hitting the floor?
 		if ((moveCollisions & CollisionFlags.Below) != 0) {
 			velocity.y = 0f;
+			bPlaySlideLeft = false;
+			bPlaySlideRight = false;
 		}
 		
 		//are we hitting a wall?
@@ -260,6 +256,20 @@ public class RGPlayer : Actor
 					jumpThroughDisabledColliders.Add(c);
 				}
 			}
+		}
+		
+		if (bPlaySlideLeft && !slideLeft.isPlaying) {
+			slideLeft.Emit(1);
+			slideLeft.Play();
+		} else if (!bPlaySlideLeft && slideLeft.isPlaying) {
+			slideLeft.Stop();
+		}
+		
+		if (bPlaySlideRight && !slideRight.isPlaying) {
+			slideRight.Emit(1);
+			slideRight.Play();
+		} else if (!bPlaySlideRight && slideRight.isPlaying) {
+			slideRight.Stop();
 		}
 		
 		//drain lifetime
@@ -315,6 +325,8 @@ public class RGPlayer : Actor
 		default:
 			throw new System.NotImplementedException("RGPlayer.OnGUI " + currentPickup);
 		}
+		
+		GUILayout.Label(velocity.ToString());
 	}
 	
 	float ApplyDrag(float inVelocity, float inDrag, float minVelocity = 0f)
