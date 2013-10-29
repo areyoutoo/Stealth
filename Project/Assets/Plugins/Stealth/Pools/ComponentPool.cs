@@ -117,13 +117,18 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 	
 	protected void AddClones() {
 		AddClones(nextCloneCount);
-		Warn(string.Format("exhausted, instantiating clones ({0})", nextCloneCount));
+		Info(string.Format("exhausted, instantiating clones ({0})", nextCloneCount));
 		nextCloneCount = Mathf.Min(nextCloneCount * 2, MAX_CLONE_COUNT);
 	}
 	
 	protected void Warn(string msg) {
 		msg = string.Format("{0} '{1}' {2}", GetType(), id, msg);
 		Debug.LogWarning(msg, this);
+	}
+	
+	protected void Info(string msg) {
+		msg = string.Format("{0} '{1}' {2}", GetType(), id, msg);
+		Debug.Log(msg, this);
 	}
 	
 	protected virtual void OnAwake() {}

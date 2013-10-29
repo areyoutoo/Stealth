@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  _bloodParticles: Blood
   jumpSound: {fileID: 8200004}
   goldSound: {fileID: 8200002}
   landSound: {fileID: 8200000}

@@ -4,12 +4,17 @@ using System.Collections;
 public class Timebomb : Actor {
 	[SerializeField] float timeToDie = 3f;
 	
+	float currentTimeToDie;
+	
 	protected void OnEnable() {
-		Invoke("Explode", timeToDie);
+		currentTimeToDie = timeToDie;
 	}
 	
-	protected void OnDisable() {
-		CancelInvoke();
+	protected void Update() {
+		currentTimeToDie -= Time.deltaTime;
+		if (currentTimeToDie < 0f) {
+			Die();
+		}
 	}
 	
 	public void Explode() {
