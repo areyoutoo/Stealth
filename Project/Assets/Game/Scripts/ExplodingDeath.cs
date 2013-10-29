@@ -6,7 +6,7 @@ public class ExplodingDeath : Death {
 	[SerializeField] string explosionName;
 	
 	public override void Die() {
-		base.Die();
+		OnFinishDying();
 	}
 	
 	protected override void OnFinishDying() {
