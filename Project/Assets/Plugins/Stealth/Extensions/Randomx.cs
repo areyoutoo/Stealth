@@ -13,4 +13,18 @@ public static class Randomx {
 	public static Vector3 OnLine(Vector3 from, Vector3 to) {
 		return Vector3.Lerp(from, to, Random.value);
 	}
+	
+	public static float AbsRange(float min, float max) {
+		float f = Random.Range(min, max);
+		return Random.value < 0.5f ? f : -f;
+	}
+	
+	public static int AbsRange(int min, int max) {
+		int i = Random.Range(min, max);
+		return Random.value < 0.5f ? i : -i;
+	}
+	
+	public static bool CoinToss() {
+		return Random.value < 0.5f;
+	}
 }
