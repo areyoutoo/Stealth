@@ -5,7 +5,7 @@ public class WeightedBag<T> : AbstractBag<T> {
 	const float DEFAULT_WEIGHT = 1f;
 	
 	float totalWeight;
-	List<WeightedBagLink<T>> links;
+	List<WeightedLink<T>> links;
 	
 	public override int count {
 		get {
@@ -33,10 +33,10 @@ public class WeightedBag<T> : AbstractBag<T> {
 	}
 	
 	public void Add(T item, float weight) {
-		Add(new WeightedBagLink<T>(item, weight));
+		Add(new WeightedLink<T>(item, weight));
 	}
 	
-	public virtual void Add(WeightedBagLink<T> link) {
+	public virtual void Add(WeightedLink<T> link) {
 		if (link == null) throw new System.ArgumentNullException("link");
 		
 		totalWeight += link.weight;
@@ -44,6 +44,6 @@ public class WeightedBag<T> : AbstractBag<T> {
 	}
 	
 	public WeightedBag() {
-		links = new List<WeightedBagLink<T>>();
+		links = new List<WeightedLink<T>>();
 	}
 }
