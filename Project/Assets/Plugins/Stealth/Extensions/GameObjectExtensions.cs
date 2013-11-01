@@ -98,7 +98,7 @@ public static class GameObjectExtensions {
 	}
 	
 	public static void ForAllComponentsInChildren<T>(this GameObject root, System.Action<T> action) where T : Component {
-		foreach (T component in root.GetComponentInChildren<T>()) {
+		foreach (T component in root.GetComponentsInChildren<T>()) {
 			action(component);
 		}
 	}

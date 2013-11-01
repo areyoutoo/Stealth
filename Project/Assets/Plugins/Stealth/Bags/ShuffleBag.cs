@@ -46,6 +46,7 @@ public class ShuffleBag<T> : RandomBag<T> {
 		AddRange(items);
 	}
 	
-	public ShuffleBag(params T[] items) : this(items) {
+	public ShuffleBag(params T[] items) : this() {
+		AddRange(items);
 	}
 }
