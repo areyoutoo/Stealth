@@ -49,7 +49,7 @@ public class RoomInfo : MonoBehaviour {
 			Vector3 pos = Randomx.InBounds(innerBounds).WithZ(0f);
 			
 			string poolName = (Random.value < 0.3f ? "Flybot" : "Guard");
-			Transform guard = PoolManager.Get<TransformPool>(poolName).GetNextAt(pos);			
+			Transform guard = PoolManager.Get<TransformPool>(poolName).GetNextAt(pos, Quaternion.identity);			
 			guard.parent = transform;
 		}
 	}
