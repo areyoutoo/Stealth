@@ -89,4 +89,17 @@ public static class GameObjectExtensions {
 	public static Bounds GetColliderBounds(this GameObject root) {
 		return Boundsx.EncapsulateAll(root.GetComponentsInChildren<Collider>());
 	}
+	
+	
+	public static void ForAllComponents<T>(this GameObject root, System.Action<T> action) where T : Component {
+		foreach (T component in root.GetComponents<T>()) {		
+			action(component);
+		}
+	}
+	
+	public static void ForAllComponentsInChildren<T>(this GameObject root, System.Action<T> action) where T : Component {
+		foreach (T component in root.GetComponentInChildren<T>()) {
+			action(component);
+		}
+	}
 }
