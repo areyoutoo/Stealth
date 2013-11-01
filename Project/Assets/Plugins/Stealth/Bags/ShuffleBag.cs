@@ -4,16 +4,16 @@ using System.Collections.Generic;
 public class ShuffleBag<T> : RandomBag<T> {
 	protected List<T> backups;
 	
-//	public override int count {
-//		get {
-//			return backups.Count;
-//		}
-//	}
+	public int backupCount {
+		get {
+			return backups.Count;
+		}
+	}
 	
 	public override T GetNext()
 	{
 		if (members.Count < 1) {
-			members.AddRange(backups);
+			Refill();
 		}
 		return base.GetNext ();
 	}
@@ -27,6 +27,11 @@ public class ShuffleBag<T> : RandomBag<T> {
 		bool m = base.Remove(item);
 		bool b = backups.Remove(item);
 		return m || b;
+	}
+	
+	public void Refill() {
+		members.Clear();
+		members.AddRange(backups);
 	}
 	
 	public ShuffleBag() : base() {
