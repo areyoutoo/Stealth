@@ -81,4 +81,12 @@ public static class GameObjectExtensions {
 		
 		return child;
 	}
+	
+	public static Bounds GetRendererBounds(this GameObject root) {
+		return Boundsx.EncapsulateAll(root.GetComponentsInChildren<Renderer>());
+	}
+	
+	public static Bounds GetColliderBounds(this GameObject root) {
+		return Boundsx.EncapsulateAll(root.GetComponentsInChildren<Collider>());
+	}
 }
