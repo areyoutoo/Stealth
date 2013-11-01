@@ -34,7 +34,7 @@ public class ParticlePool : ComponentPool<ParticleSystem> {
 		timeToReclaim = reclaimRate;
 	}
 	
-	protected void Update() {
+	protected override void OnUpdate() {
 		timeToReclaim -= Time.time;
 		if (timeToReclaim < 0f) {
 			timeToReclaim = _reclaimRate;

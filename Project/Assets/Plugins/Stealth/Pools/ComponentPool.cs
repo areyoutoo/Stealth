@@ -12,6 +12,8 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 		get { return members.Count; }
 	}
 	
+	int copiesPending;
+	
 	public T GetNext() {
 		T item;
 		if (GetNextInternal(out item)) {
@@ -52,7 +54,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 		if (item == null) {
 			Warn("ignoring add: invalid item");
 		} else {
-			if (copyOnEmpty && backupMember == null) {
+			if ((copyOnEmpty || copyOnStart > 0) && backupMember == null) {
 				backupMember = item;
 			} else {
 				members.Add(item);
@@ -71,6 +73,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 				T item = (T)Instantiate(backupMember, backupMember.transform.position, backupMember.transform.rotation);
 				item.name = backupMember.name;
 				Add(item);
+				copiesPending = Mathf.Max(0, copiesPending - 1);
 			}
 		}
 	}
@@ -107,8 +110,19 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 				Add(item);
 			}
 		}
+		if (copyOnStart > 0) {
+			copiesPending = copyOnStart;
+			AddClones(copyRate);
+		}
 		PoolManager.Add(this);
 		OnAwake();
+	}
+	
+	protected void Update() {
+		if (copiesPending > 0) {
+			AddClones(copyRate);
+		}
+		OnUpdate();
 	}
 	
 	protected void OnDestroy() {
@@ -116,7 +130,8 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 	}
 	
 	protected void AddClones() {
-		AddClones(nextCloneCount);
+		copiesPending = nextCloneCount;
+		AddClones(copyRate);
 		Info(string.Format("exhausted, instantiating clones ({0})", nextCloneCount));
 		nextCloneCount = Mathf.Min(nextCloneCount * 2, MAX_CLONE_COUNT);
 	}
@@ -132,6 +147,7 @@ public abstract class ComponentPool<T> : ComponentPoolBase where T : UnityEngine
 	}
 	
 	protected virtual void OnAwake() {}
+	protected virtual void OnUpdate() {}
 	protected virtual void OnAdd(T item) {}
 	protected virtual void OnGetNext(T item) {}
 }
