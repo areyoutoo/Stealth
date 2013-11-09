@@ -27,4 +27,8 @@ public static class Randomx {
 	public static bool CoinToss() {
 		return Random.value < 0.5f;
 	}
+	
+	public static bool CoinToss(float truthChance) {
+		return Random.value < truthChance;
+	}
 }
